@@ -4,10 +4,10 @@ d3.json("ressources/the_oscar_award.json").then(function(data) {
     const filteredData = data.filter(d => d.year_ceremony >= 1928 && d.year_ceremony <= 2023);
   
     // Grouper les données par année de cérémonie et compter les nominations
-    const nominationsByYear = d3.nest()
-      .key(d => d.year_ceremony)
-      .rollup(v => v.length)
-      .entries(filteredData);
+    // const nominationsByYear = d3.nest()
+    //   .key(d => d.year_ceremony)
+    //   .rollup(v => v.length)
+    //   .entries(filteredData);
   
     // Convertir les données en un tableau d'objets avec "year" et "count"
     const finalData = nominationsByYear.map(d => ({
