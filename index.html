@@ -1,32 +1,23 @@
 <!DOCTYPE html>
-<html lang="fr">
-    <head>
-        <meta charset="utf-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
-        <title>Evolution Oscars</title>
-        <link rel="stylesheet" type="text/css" href="style.css"/>
-        <script type="text/javascript" src="ressources/d3.js"></script>
-    </head>
-    <body>
-        <div id="small">
-            <h1>Veillez augmenter la taille de votre navigateur.</h1>
-        </div>
-        <div id="good">
-            <svg id="bar-chart" width="800" height="400"></svg>
-
+<html>
+<head>
+    <title>Graphique en colonnes Oscars</title>
+    <script src="d3.v5.min.js"></script>        
+</head>
+<body>
+    <svg id="bar-chart" width="5000" height="400"></svg>
+    <h2>Détails du film</h2>
     <div id="film-details">
-        <h2>Détails du film</h2>
-        <p><strong>Année de création :</strong> <span id="film-year"></span></p>
-        <p><strong>Nom du film :</strong> <span id="film-name"></span></p>
-        <p><strong>Réalisateur(rice) ou Acteur(rise) :</strong> <span id="film-director"></span></p>
-        <p><strong>Catégorie :</strong> <span id="film-category"></span></p>
-        <p><strong>Gagnant :</strong> <span id="film-winner"></span></p>
+        <p><span id="film-year"></span></p>
+        <p><span id="film-name"></span></p>
+        <p><span id="film-director"></span></p>
+        <p><span id="film-category"></span></p>
+        <p><span id="film-winner"></span></p>
       </div>
       
     <!-- Inclure votre fichier JavaScript -->
     <script src="script.js"></script>
     <!-- Inclure votre fichier JSON (data) -->
-    <script src="ressources/the_oscar_award.json"></script>
-        </div>
-    </body>
+    <script src="data.json"></script>
+</body>
 </html>

@@ -1,10 +1,10 @@
 // Chargement des données depuis le fichier JSON
-d3.json("ressources/the_oscar_award.json").then(function(data) {
+d3.json("data.json").then(function(data) {
     // Filtrer les données pour les années de 1928 à 2023
     const filteredData = data.filter(d => d.year_ceremony >= 1928 && d.year_ceremony <= 2023);
   
     // Grouper les données par année de cérémonie et compter les nominations
-    const nominationsByYear = d3.map()
+    const nominationsByYear = d3.nest()
       .key(d => d.year_ceremony)
       .rollup(v => v.length)
       .entries(filteredData);
@@ -52,25 +52,29 @@ d3.json("ressources/the_oscar_award.json").then(function(data) {
       .attr("transform", `translate(${margin.left},0)`)
       .call(d3.axisLeft(y).ticks(5));
   
-    // Fonction pour gérer les clics sur les barres
+   // Fonction pour gérer les clics sur les barres
 function handleClick(d) {
-    // Trouver les détails du film correspondant à l'année sélectionnée
-    const selectedFilm = data.find(film => film.year_ceremony === d.year);
-  
-    // Afficher les détails dans la section HTML
-    const filmDetails = document.getElementById("film-details");
-    const filmYear = document.getElementById("film-year");
-    const filmName = document.getElementById("film-name");
-    const filmDirector = document.getElementById("film-director");
-    const filmCategory = document.getElementById("film-category");
-    const filmWinner = document.getElementById("film-winner");
-  
-    filmYear.textContent = selectedFilm.year_film;
-    filmName.textContent = selectedFilm.film;
-    filmDirector.textContent = selectedFilm.name;
-    filmCategory.textContent = selectedFilm.category;
-    filmWinner.textContent = selectedFilm.winner ? "Oui" : "Non";
-  }
-  
+  // Effacer le contenu précédent de la section des détails
+  const filmDetails = document.getElementById("film-details");
+  filmDetails.innerHTML = "";
+
+  // Trouver tous les films correspondant à l'année sélectionnée
+  const selectedFilms = data.filter(film => film.year_ceremony === d.year);
+
+  // Créer une liste non ordonnée pour afficher les détails de tous les films
+  const filmList = document.createElement("ul");
+
+  selectedFilms.forEach(selectedFilm => {
+    const listItem = document.createElement("li");
+    listItem.innerHTML = 
+    `<p><strong>Année de création:</strong> ${selectedFilm.year_film}</p> 
+    <strong>Nom du film:</strong> ${selectedFilm.film}, <strong>Réalisateur(rice) ou Acteur(rise):</strong> ${selectedFilm.name}, <strong>Catégorie:</strong> ${selectedFilm.category}, <strong>Gagnant:</strong> ${selectedFilm.winner ? "Oui" : "Non"}`;
+    filmList.appendChild(listItem);
+  });
+
+  filmDetails.appendChild(filmList);
+}
+
+ 
   });
   
