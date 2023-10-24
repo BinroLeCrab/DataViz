@@ -50,7 +50,7 @@ function groupByDec(tab){
 
     }
 
-    console.log(tab);
+    return group;
 }
 
 
@@ -78,6 +78,7 @@ d3.json("data.json").then(function(data) {
 
     const DataDec = groupByDec(finalData);
     
+    console.log(DataDec);
   
     // Création du graphique en colonnes
     const svg = d3.select("#bar-chart");
@@ -86,18 +87,21 @@ d3.json("data.json").then(function(data) {
     const height = +svg.attr("height") - margin.top - margin.bottom;
   
     const x = d3.scaleBand()
-      .domain(finalData.map(d => d.year))
+    //   .domain(finalData.map(d => d.year))
+      .domain(DataDec.map(d => d.year))
       .range([margin.left, width - margin.right])
       .padding(0.1);
   
     const y = d3.scaleLinear()
-      .domain([0, d3.max(finalData, d => d.count)])
+    //   .domain([0, d3.max(finalData, d => d.count)])
+      .domain([0, d3.max(DataDec, d => d.count)])
       .nice()
       .range([height - margin.bottom, margin.top]);
   
     svg.append("g")
       .selectAll("rect")
-      .data(finalData)
+    //   .data(finalData)
+      .data(DataDec)
       .enter()
       .append("rect")
       .attr("x", d => x(d.year))
@@ -108,7 +112,8 @@ d3.json("data.json").then(function(data) {
   
     svg.append("g")
       .attr("transform", `translate(0,${height - margin.bottom})`)
-      .call(d3.axisBottom(x).tickValues(finalData.map(d => d.year)))
+    //   .call(d3.axisBottom(x).tickValues(finalData.map(d => d.year)))
+      .call(d3.axisBottom(x).tickValues(DataDec.map(d => d.year)))
       .selectAll("text")
       .style("text-anchor", "middle");
   
