@@ -9,11 +9,59 @@ function groupByDec(tab){
     let annee_debut = 1928;
     let annee_fin;
     let value = 0;
-    
+    let group = [];
+    let index = 0;
+    let annee = "";
+
     console.log("hey");
 
     for (let i = 0; i < tab.length; i++) {
-        console.log(tab[i]);
+        if (tab[i]['year'] == (annee_debut + 10)){
+            console.log(tab[i]);
+
+            annee = `${annee_debut} - ${annee_fin}`;
+            console.log(annee);
+
+            group[index] = {'year': annee, 'count':value};
+            index++;
+            console.log(group);
+
+            annee_debut = tab[i]['year'];
+            value = tab[i]['count'];
+
+        } else if (tab[i]['year'] == 1931){
+
+            console.log(tab[i]);
+
+            annee = `${annee_debut} - ${annee_fin}`;
+            console.log(annee);
+
+            group[index] = {'year': annee, 'count':value};
+            index++;
+            console.log(group);
+
+            annee_debut = tab[i]['year'];
+            value = tab[i]['count'];
+
+        } else if (tab[i]['year'] == 2023){
+
+            console.log(tab[i]);
+
+            annee_fin = tab[i]['year'];
+            value = value + tab[i]['count'];
+
+            annee = `${annee_debut} - ${annee_fin}`;
+            console.log(annee);
+
+            group[index] = {'year': annee, 'count':value};
+            index++;
+            console.log(group);
+
+        } else {
+            annee_fin = tab[i]['year'];
+            value = value + tab[i]['count'];
+        }
+
     }
 
     console.log(tab);
