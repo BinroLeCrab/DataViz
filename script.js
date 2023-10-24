@@ -1,19 +1,49 @@
+
+window.addEventListener("load",run,false);
+
+function run() {
+}
+
+
+function groupByDec(tab){
+    let annee_debut = 1928;
+    let annee_fin;
+    let value = 0;
+    
+    console.log("hey");
+
+    for (let i = 0; i < tab.length; i++) {
+        console.log(tab[i]);
+    }
+
+    console.log(tab);
+}
+
+
+
 // Chargement des données depuis le fichier JSON
 d3.json("data.json").then(function(data) {
     // Filtrer les données pour les années de 1928 à 2023
     const filteredData = data.filter(d => d.year_ceremony >= 1928 && d.year_ceremony <= 2023);
-  
+
+    console.log(filteredData);
+    
     // Grouper les données par année de cérémonie et compter les nominations
     const nominationsByYear = d3.nest()
-      .key(d => d.year_ceremony)
-      .rollup(v => v.length)
-      .entries(filteredData);
-  
+    .key(d => d.year_ceremony)
+    .rollup(v => v.length)
+    .entries(filteredData);
+    
+    console.log(nominationsByYear);
+
     // Convertir les données en un tableau d'objets avec "year" et "count"
     const finalData = nominationsByYear.map(d => ({
       year: parseInt(d.key),
       count: d.value
     }));
+
+    const DataDec = groupByDec(finalData);
+    
   
     // Création du graphique en colonnes
     const svg = d3.select("#bar-chart");
