@@ -16,21 +16,7 @@ function groupByDec(tab){
     console.log("hey");
 
     for (let i = 0; i < tab.length; i++) {
-        if (tab[i]['year'] == (annee_debut + 10)){
-            console.log(tab[i]);
-
-            annee = `${annee_debut} - ${annee_fin}`;
-            console.log(annee);
-
-            group[index] = {'year': annee, 'count':value};
-            index++;
-            console.log(group);
-
-            annee_debut = tab[i]['year'];
-            value = tab[i]['count'];
-
-        } else if (tab[i]['year'] == 1931){
-
+        if ((tab[i]['year'] == 1931) || (tab[i]['year'] == (annee_debut + 10))){
             console.log(tab[i]);
 
             annee = `${annee_debut} - ${annee_fin}`;
