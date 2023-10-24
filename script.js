@@ -1,4 +1,3 @@
-
 window.addEventListener("load",run,false);
 
 function run() {
@@ -127,23 +126,5 @@ function handleClick(d) {
   const filmDetails = document.getElementById("film-details");
   filmDetails.innerHTML = "";
 
-  // Trouver tous les films correspondant à l'année sélectionnée
-  const selectedFilms = data.filter(film => film.year_ceremony === d.year);
-
-  // Créer une liste non ordonnée pour afficher les détails de tous les films
-  const filmList = document.createElement("ul");
-
-  selectedFilms.forEach(selectedFilm => {
-    const listItem = document.createElement("li");
-    listItem.innerHTML = 
-    `<p><strong>Année de création:</strong> ${selectedFilm.year_film}</p> 
-    <strong>Nom du film:</strong> ${selectedFilm.film}, <strong>Réalisateur(rice) ou Acteur(rise):</strong> ${selectedFilm.name}, <strong>Catégorie:</strong> ${selectedFilm.category}, <strong>Gagnant:</strong> ${selectedFilm.winner ? "Oui" : "Non"}`;
-    filmList.appendChild(listItem);
-  });
-
-  filmDetails.appendChild(filmList);
-}
-
- 
-  });
-  
+d3.json("data.json").then(function(data) {
+  const filteredData = data.filter(d => d.year_ceremony >= 1928 && d.year_ceremony <= 2023);
