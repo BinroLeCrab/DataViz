@@ -1,17 +1,24 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Graphique en colonnes Oscars</title>
-    <script src="d3.v5.min.js"></script>
-</head>
-<body>
-    <svg id="bar-chart" width="1000" height="400"></svg>
-    <h2>Détails du film</h2>
-    <svg id="cam" width="500" height="500"></svg>
-    <div id="film-details"></div>
-
-
-    <script src="script.js"></script>
-    <script src="data.json"></script>
-</body>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
+        <title>Evolution Oscars</title>
+        <link rel="stylesheet" type="text/css" href="style.css"/>
+        <script type="text/javascript" src="script.js"></script>
+        <script src="d3.v5.min.js"></script>
+        <script src="script.js"></script>
+        <script src="data.json"></script>
+    </head>
+    <body>
+        <div id="small">
+            <h1>Veillez augmenter la taille de votre navigateur.</h1>
+        </div>
+        <div id="good">
+            <svg id="bar-chart" width="90vw" height="80vh" viewBox=""></svg>
+            <h2>Détails du film</h2>
+            <svg id="cam" width="500" height="500"></svg>
+            <div id="film-details"></div>
+        </div>
+    </body>
 </html>
