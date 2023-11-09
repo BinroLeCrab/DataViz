@@ -1,0 +1,28 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body{
+    background-color: #0D1117;
+}
+button{
+    height: 35px;
+    width: 119px;
+    border-radius: 30px;
+    background-color: rgba(0, 0, 0, 0);
+    border: solid blueviolet;
+    color: aliceblue;
+}
+
+
+.btn_press{
+    height: 35px;
+    width: 119px;
+    border-radius: 30px;
+    background-color: blueviolet;
+    border: none;
+    color: aliceblue;
+}
+
+
