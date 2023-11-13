@@ -56,7 +56,7 @@ function affiche_accueil() {
       return group;
     }
   
-    d3.json("./src/data.json").then(function (data) {
+    d3.json("../src/data.json").then(function (data) {
       const filteredData = data.filter(
         (d) => d.year_ceremony >= 1928 && d.year_ceremony <= 2023
       );
