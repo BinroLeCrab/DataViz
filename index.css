@@ -1,18 +1,74 @@
 *{
     box-sizing: border-box;
     margin: 0;
+    color: aliceblue;
 }
 
 body{
     background-color: #0D1117;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 2%;
 }
-button{
+
+
+#graph{
+    background-color: #0D1117;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 7%;
+    height: 90vh;
+    width: 80vw;
+    border-radius: 20px;
+    border: solid aliceblue;
+    background-color: rgba(44, 44, 44, 0.514);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
+.btn_unpress{
     height: 35px;
     width: 119px;
     border-radius: 30px;
     background-color: rgba(0, 0, 0, 0);
     border: solid blueviolet;
     color: aliceblue;
+    transition: 
+    box-shadow 1s,
+    background-color 0.5s;
+}
+
+.btn_unpress:hover{
+    height: 35px;
+    width: 119px;
+    border-radius: 30px;
+    background-color: rgba(0, 0, 0, 0);
+    border: solid blueviolet;
+    color: aliceblue;
+    box-shadow: 0px 0px 10px 0px #C294FC;
 }
 
 
@@ -23,6 +79,8 @@ button{
     background-color: blueviolet;
     border: none;
     color: aliceblue;
+    transition: 
+    background-color 0.5s;
 }
 
-
+ */
