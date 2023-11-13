@@ -1,19 +1,27 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="d3.v5.min.js"></script>
-    <link rel="stylesheet" href="index.css">
-    <title>Graphique en colonnes Oscars</title>
-</head>
-<body>
-    <div id="accueil">
-        
-    </div>
 
-    <div id="graph">
-    <svg id="bar-chart" width="1000" height="400"></svg>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
+        <title>Evolution Oscars</title>
+        <link rel="stylesheet" type="text/css" href="style.css"/>
+        <script type="text/javascript" src="script.js"></script>
+        <script src="d3.v5.min.js"></script>
+        <script src="script.js"></script>
+        <script src="data.json"></script>
+    </head>
+    <body>
+        <div id="small">
+            <h1>Veillez augmenter la taille de votre navigateur.</h1>
+        </div>
+        <div id="good">
+           <div id="accueil">
+        
+            </div>
+
+        <div id="graph">
+        <svg id="bar-chart" width="1000" height="400"></svg>
     <!-- <ul>
         <button id="btn_decenie" class="btn_press">Décénie</button>
         <button id="btn_categorie" class="btn_unpress">Catégorie</button>
@@ -23,10 +31,7 @@
     <!-- <div id="film-details"></div> -->
 
     </div>
-
-    <script src="generate.js"></script>
-    <script src="script.js"></script>
-    <script src="data.json"></script>
-    
-</body>
+        </div>
+          <script src="generate.js"></script>
+    </body>
 </html>
