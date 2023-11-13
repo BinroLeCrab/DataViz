@@ -5,33 +5,58 @@ function affiche_accueil(){
 window.addEventListener("load", affiche_decenie, false);
 
 function affiche_decenie() {
+
+    // Fonction de groupement par décénie
     function groupByDec(tab){
+
+        // def des variables
         let annee_debut = 1928;
         let annee_fin;
         let value = 0;
         let group = [];
         let index = 0;
         let annee = "";
-
+        
+        console.log("hey"); //Débogage
+    
+        // Parcours du tableau par annéee
         for (let i = 0; i < tab.length; i++) {
-            if (tab[i]['year'] === 1931 || tab[i]['year'] === (annee_debut + 10)){
-                annee_fin = tab[i]['year'] - 1;
+
+            if ((tab[i]['year'] == 1931) || (tab[i]['year'] == (annee_debut + 10))){ // Pour finir une décénie
+                console.log(tab[i]);//Débogage
+    
                 annee = `${annee_debut} - ${annee_fin}`;
-                group[index] = {'year': annee, 'count': value};
+                console.log(annee);//Débogage
+    
+                group[index] = {'year': annee, 'count':value}; // Compilation dans le tab de fin
                 index++;
+                console.log(group);//Débogage
+    
                 annee_debut = tab[i]['year'];
                 value = tab[i]['count'];
-            } else if (tab[i]['year'] === 2023){
+                
+            } else if (tab[i]['year'] == 2023){ // Pour que le tab ayent jusqu'à 2023
+    
+                console.log(tab[i]);//Débogage
+    
                 annee_fin = tab[i]['year'];
-                value += tab[i]['count'];
+                value = value + tab[i]['count'];
+    
                 annee = `${annee_debut} - ${annee_fin}`;
-                group[index] = {'year': annee, 'count': value};
+                console.log(annee);//Débogage
+    
+                group[index] = {'year': annee, 'count':value};
                 index++;
-            } else {
+                console.log(group);//Débogage
+    
+            } else { // Pour les année classique
                 annee_fin = tab[i]['year'];
-                value += tab[i]['count'];
+                value = value + tab[i]['count'];
             }
+    
         }
+    
+        //Renvoi du tab des décénie
         return group;
     }
 
