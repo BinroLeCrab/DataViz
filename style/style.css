@@ -1,21 +1,31 @@
-*,
-*::before,
-*::after{
-box-sizing: border-box;
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--Blanc);
+    background-color: var(--Noir1);
+    text-align: center;
+    margin: 0;
 }
 
-#good {
-    display: none;
+#frame {
+    background-color: var(--Fond2);
+    border: var(--Glass);
+    border-radius: var(--Rad1);
+    height: 92vh;
+    margin: 4vh;
 }
 
-@media (min-width: 1024px) {
+h1 {
+    font-weight: 900;
+    font-size: 64px;
+    text-transform: uppercase;
+}
 
-    #small {
-        display: none;
-    }
+h2 {
+    font-weight: 700;
+    font-size: 32px;
+    text-transform: uppercase;
+}
 
-    #good {
-        display: inherit;
-    }
-
+.violetTxt {
+    color: var(--Violet2);
 }
