@@ -60,7 +60,7 @@ function affiche_decenie() {
         return group;
     }
 
-    d3.json("data.json").then(function(data) {
+    d3.json("../src/data.json").then(function(data) {
         const filteredData = data.filter(d => d.year_ceremony >= 1928 && d.year_ceremony <= 2023);
         const nominationsByYear = d3.nest()
             .key(d => d.year_ceremony)
