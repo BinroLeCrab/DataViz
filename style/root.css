@@ -46,6 +46,13 @@ box-sizing: border-box;
     display: none;
 }
 
+#small {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
 @media (min-width: 1024px) {
 
     #small {
