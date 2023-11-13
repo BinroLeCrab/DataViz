@@ -31,7 +31,43 @@
 
             <article id="frame">
                 <h2>Nombre de <span class="violetTxt">nominations aux oscars</span></h2>
-                <svg id="bar-chart" width="90vw" height="80vh">
+
+                <svg id="bar-chart" width="90vw" height="75vh" viewbox="-50 -520 1270 550" >
+
+                    <defs>
+                        <linearGradient id="gradient" gradientTransform="rotate(90)">
+                            <stop offset="0%" stop-color="#C294FC" />
+                            <stop offset="100%" stop-color="#753FC7" />
+                        </linearGradient>
+                    </defs>
+
+                    <g id="histogramme" transform="translate(10,0)">
+                    </g>
+
+                    <line x1="0" y1="0" x2="1220" y2="0" style="stroke:#e8e8e84d; stroke-width:2"></line>
+                    <line x1="0" y1="0" x2="0" y2="-520" style="stroke:#e8e8e84d; stroke-width:2"></line>
+
+                    <g id="legCount" transform="translate(0,0)">
+                        <text text-anchor = "end" transform="translate(0,-83)">250 -</text>
+                        <text text-anchor = "end" transform="translate(0,-166)">500 -</text>
+                        <text text-anchor = "end" transform="translate(0,-250)">750 -</text>
+                        <text text-anchor = "end" transform="translate(0,-333)">1000 -</text>
+                        <text text-anchor = "end" transform="translate(0,-416)">1250 -</text>
+                        <text text-anchor = "end" transform="translate(0,-500)">1500 -</text>
+                    </g>
+
+                    <g id="legAnn" transform="translate(60, 20)">
+                    </g>
+
+
+                    <!-- <rect class="bar" x="0" y="0" width="100" height="500" fill="url(#gradient)" transform="translate(0,-500)" />
+                    <rect class="bar" x="110" y="0" width="100" height="200" fill="url(#gradient)" transform="translate(0,-200)" /> -->
+
+                    <!-- <path d="M0.25 15C0.25 6.71573 6.96573 0 15.25 0H75.25C83.5343 0 90.25 6.71573 90.25 15V356H0.25V15Z" fill="url(#gradient)" transform="translate(0,-)"/>
+
+                    <circle cx="0" cy="0" r="1" fill="red" />
+                    <circle cx="-50" cy="-510" r="1" fill="red" />
+                    <circle cx="1220" cy="40" r="1" fill="red" /> -->
                 </svg>
                 <!-- <ul>
                     <button id="btn_decenie" class="btn_press">Décénie</button>

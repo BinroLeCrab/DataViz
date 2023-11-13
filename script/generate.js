@@ -56,7 +56,7 @@ function affiche_accueil() {
       return group;
     }
   
-    d3.json("../src/data.json").then(function (data) {
+    d3.json("./src/data.json").then(function (data) {
       const filteredData = data.filter(
         (d) => d.year_ceremony >= 1928 && d.year_ceremony <= 2023
       );
@@ -69,12 +69,43 @@ function affiche_accueil() {
         year: parseInt(d.key),
         count: d.value,
       }));
+
       const DataDec = groupByDec(finalData);
-  
-      const svg = d3.select("#bar-chart");
-      const margin = { top: 2 * 10, right: 2 * 20, bottom: 2 * 0.2, left: 2 * 20 };
-      const width = window.innerWidth * 0.6;
-      const height = window.innerHeight * 0.343 - margin.top - margin.bottom;
+        
+        const svg = d3.select("#bar-chart");
+        const margin = 10;
+        const width = 100;
+
+        d3.select("#histogramme")
+            .selectAll("rect")
+            .data(DataDec)
+            .join("rect")
+            .attr("class", "histobarre")
+            .style("width", width)
+            .style("height", d => `${d.count / 3}`)
+            .style("fill", "url(#gradient)")
+            .attr("transform", (d,i) => `translate(${i * (width + margin)}, 0) scale(1,-1)`);
+
+        d3.select("#legAnn")
+            .selectAll("text")
+            .data(DataDec)
+            .join("text")
+            .text(d => d.year)
+            .attr("text-anchor", "middle")
+            .attr("transform", (d,i) => `translate(${i * (width + margin)}, 0)`)
+            .style("font-family", "'Inter', sans-serif")
+            .style("font-weight", 700)
+            .style("fill", "#E8E8E8");
+
+        d3.select("#legCount")
+            .selectAll("text")
+            .style("font-family", "'Inter', sans-serif")
+            .style("font-weight", 700)
+            .style("fill", "#E8E8E8");
+
+      /*const margin = { top: 20, right: 100, bottom: 20, left: -120 };
+      const width = window.innerWidth * 0.8;
+      const height = window.innerHeight * 0.6 - margin.top - margin.bottom;
   
       const x = d3.scaleBand()
         .domain(DataDec.map((d) => d.year))
@@ -124,7 +155,7 @@ function affiche_accueil() {
         .style("text-anchor", "end")
         .attr("dx", "-.8em")
         .attr("dy", ".15em")
-        .attr("transform", "rotate(-65)");
+        .attr("transform", "translate(1,0)");
   
       svg.append("g")
         .attr("transform", `translate(${margin.left},0)`)
@@ -143,6 +174,6 @@ function affiche_accueil() {
           filmDetails.appendChild(p);
         });
       }
-    });
+    */});
   }
   
