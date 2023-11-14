@@ -1,16 +1,22 @@
+
+window.addEventListener("load", affiche_accueil, false);
+
 function affiche_accueil() {
-    document.innerHTML = "";
+    d3.select("#Decennie")
+      .style("display", "none");
+    
+    document.getElementById("enter").addEventListener("click", affiche_decenie, false);
 }
 
 function Aff_annee(d){
-    console.log(d.list);
+    console.log(d.list[2022]["count"]);
 }
   
-window.addEventListener("load", affiche_decenie, false);
 
 
   
-  function affiche_decenie() {
+function affiche_decenie() {
+
     // Fonction de groupement par décennie
     function groupByDec(tab) {
       // Définition des variables
@@ -168,6 +174,12 @@ window.addEventListener("load", affiche_decenie, false);
 
       return group;
     }
+
+    d3.select("#Decennie")
+      .style("display", "block");
+
+    d3.select("#Accueil")
+      .style("display", "none");
   
     d3.json("./src/data.json").then(function (data) {
 

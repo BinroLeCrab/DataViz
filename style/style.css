@@ -17,6 +17,7 @@ main {
     border-radius: var(--Rad1);
     height: 92vh;
     margin: 4vh;
+    display: none;
 }
 
 h1 {
