@@ -76,16 +76,6 @@ function affiche_accueil() {
         const margin = 10;
         const width = 100;
 
-        d3.select("#histogramme")
-            .selectAll("rect")
-            .data(DataDec)
-            .join("rect")
-            .attr("class", "histobarre")
-            .style("width", width)
-            .style("height", d => `${d.count / 3}`)
-            .style("fill", "url(#gradient)")
-            .attr("transform", (d,i) => `translate(${i * (width + margin)}, 0) scale(1,-1)`);
-
         d3.select("#legAnn")
             .selectAll("text")
             .data(DataDec)
@@ -102,6 +92,18 @@ function affiche_accueil() {
             .style("font-family", "'Inter', sans-serif")
             .style("font-weight", 700)
             .style("fill", "#E8E8E8");
+
+        d3.select("#histogramme")
+            .selectAll("rect")
+            .data(DataDec)
+            .join("rect")
+            .attr("class", "histobarre")
+            .style("width", width)
+            .style("height", 0)
+            .style("fill", "url(#gradient)")
+            .attr("transform", (d,i) => `translate(${i * (width + margin)}, 0) scale(1,-1)`)
+            .transition().duration(350).ease(d3.easeLinear)
+            .style("height", d => `${d.count / 3}`);
 
       /*const margin = { top: 20, right: 100, bottom: 20, left: -120 };
       const width = window.innerWidth * 0.8;
