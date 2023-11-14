@@ -253,13 +253,19 @@ function affiche_decenie() {
             d3.select(this)
                 .transition()
                 .style("opacity", 1)
-                .filter("drop-shadow", "0px 0px 10px 0px #C294FC");   
+                .filter("drop-shadow", "0px 0px 10px 0px #C294FC");
+
+            d3.select("#infoDec") 
+              .style("display", "block");
       });
 
       d3.selectAll(".histobarre")
         .on("mouseleave",function(e,d){ //this = objeft touché
           d3.selectAll(".histobarre")
-              .style("opacity", 1);   
+              .style("opacity", 1);
+
+          d3.select("#infoDec") 
+              .style("display", "none");  
       });
       
 

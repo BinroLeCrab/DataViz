@@ -45,3 +45,7 @@ h2 {
     left: 0;
     z-index: 0;
 }
+
+#infoDec{
+    display: none;
+}
