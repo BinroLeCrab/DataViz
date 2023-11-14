@@ -173,7 +173,7 @@ window.addEventListener("load", affiche_decenie, false);
 
       console.log(data);
 
-      groupByAnn(data);
+      // groupByAnn(data);
 
 
       const filteredData = data.filter(
