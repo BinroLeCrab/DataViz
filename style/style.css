@@ -11,7 +11,7 @@ main {
     z-index: 1;
 }
 
-#frame {
+#Decennie {
     background-color: var(--Fond2);
     border: var(--Glass);
     border-radius: var(--Rad1);

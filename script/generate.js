@@ -2,7 +2,7 @@ function affiche_accueil() {
     document.innerHTML = "";
 }
 
-function Aff_Detail(d){
+function Aff_annee(d){
     console.log(d.list);
 }
   
@@ -230,8 +230,25 @@ window.addEventListener("load", affiche_decenie, false);
           
       d3.selectAll(".histobarre")
           .data(DataDec)
-          .on("click", d => Aff_Detail(d));
+          .on("click", d => Aff_annee(d));
 
+      d3.selectAll(".histobarre")
+          .on("mouseenter",function(e,d){ //this = objeft touché
+            d3.selectAll(".histobarre")
+                .transition()
+                .style("opacity", 0.5);
+            
+            d3.select(this)
+                .transition()
+                .style("opacity", 1)
+                .filter("drop-shadow", "0px 0px 10px 0px #C294FC");   
+      });
+
+      d3.selectAll(".histobarre")
+        .on("mouseleave",function(e,d){ //this = objeft touché
+          d3.selectAll(".histobarre")
+              .style("opacity", 1);   
+      });
       
 
       /*const margin = { top: 20, right: 100, bottom: 20, left: -120 };
