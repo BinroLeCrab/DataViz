@@ -1,8 +1,14 @@
 function affiche_accueil() {
     document.innerHTML = "";
-  }
+}
+
+function Aff_Detail(d){
+    console.log(d.list);
+}
   
-  window.addEventListener("load", affiche_decenie, false);
+window.addEventListener("load", affiche_decenie, false);
+
+
   
   function affiche_decenie() {
     // Fonction de groupement par décennie
@@ -14,25 +20,33 @@ function affiche_accueil() {
       let group = [];
       let index = 0;
       let annee = "";
+      let listA = {};
   
       console.log("hey"); // Débogage
   
       // Parcours du tableau par année
       for (let i = 0; i < tab.length; i++) {
+
         if (tab[i]["year"] == 1931 || tab[i]["year"] == annee_debut + 10) {
+
           // Pour finir une décennie
           console.log(tab[i]); // Débogage
   
           annee = `${annee_debut} - ${annee_fin}`;
           console.log(annee); // Débogage
   
-          group[index] = { year: annee, count: value }; // Compilation dans le tableau de fin
+          group[index] = { year: annee, count: value, list: listA }; // Compilation dans le tableau de fin
           index++;
           console.log(group); // Débogage
-  
+          
+          listA = {};
+
+          listA[tab[i]["year"]] = tab[i];
           annee_debut = tab[i]["year"];
           value = tab[i]["count"];
+
         } else if (tab[i]["year"] == 2023) {
+
           // Pour que le tableau aille jusqu'à 2023
           console.log(tab[i]); // Débogage
   
@@ -41,22 +55,127 @@ function affiche_accueil() {
   
           annee = `${annee_debut} - ${annee_fin}`;
           console.log(annee); // Débogage
+
+          listA[tab[i]["year"]] = tab[i];
+          console.log(listA);
   
-          group[index] = { year: annee, count: value };
+          group[index] = { year: annee, count: value, list: listA };
           index++;
           console.log(group); // Débogage
+
         } else {
+
           // Pour les années classiques
           annee_fin = tab[i]["year"];
           value = value + tab[i]["count"];
+          listA[tab[i]["year"]] = tab[i];
+          console.log(listA); //Débogage
+
         }
       }
   
       // Renvoi du tableau des décennies
       return group;
     }
+
+    function groupByAnn(tab) {
+
+      let annee = tab[0]["year_ceremony"];
+      let annvalue = 0;
+      let indexann = 0;
+      let countcat = 0;
+      let catvalue = 0;
+      let catname = tab[0]["category"];
+      let nomine = {};
+      let cat = {};
+      let group = {};
+
+      for (let i = 0; i < tab.length; i++) {
+        if (tab[i]["year_ceremony"] == annee) {
+          // Même année
+
+          if (tab[i]["category"] == catname) {
+            // Même catégorie
+            nomine[catvalue] = tab[i];
+            annvalue++;
+            catvalue++;
+
+            // console.log("cat");
+
+          } else {
+            // Changement catégorie
+            // console.log(nomine);
+
+            cat[catname] = {category: catname, count: catvalue, listN: nomine};
+            countcat++;
+
+            nomine = {};
+
+            catname = tab[i]["category"];
+            catvalue = 0;
+
+            nomine[catvalue] = tab[i];
+            annvalue++;
+            catvalue++;
+
+            // console.log(catname); //Débogage
+
+          }
+
+
+        // } else if (annee == 0) {
+
+        //   annee = tab[i]["year_ceremony"];
+        //   console.log(annee); //Débogage
+        //   catname = tab[i]["category"];
+        //   catvalue = 0;
+
+        //   nomine[catvalue] = tab[i];
+        //   annvalue++;
+        //   catvalue++;
+
+        } else {
+          // Changement annee
+          
+          console.log(annee); //Débogage
+
+          cat[catname] = {category: catname, count: catvalue, listN: nomine};
+          countcat = 0;
+          nomine = {};
+          cat = {};
+
+          group[indexann] = {year: annee, count: annvalue, category: cat};
+          indexann++;
+          annvalue = 0;
+
+          annee = tab[i]["year_ceremony"];
+          console.log(annee); //Débogage
+          catname = tab[i]["category"];
+          catvalue = 0;
+
+          nomine[catvalue] = tab[i];
+          annvalue++;
+          catvalue++;
+
+          console.log(group);
+          console.log("-----------------")
+
+        }
+      }
+
+      // cat[catname] = { category: catname, count: catvalue, listN: nomine };
+      // group[indexann] = { year: annee, count: annvalue, category: cat };
+
+      return group;
+    }
   
     d3.json("./src/data.json").then(function (data) {
+
+      console.log(data);
+
+      groupByAnn(data);
+
+
       const filteredData = data.filter(
         (d) => d.year_ceremony >= 1928 && d.year_ceremony <= 2023
       );
@@ -70,40 +189,50 @@ function affiche_accueil() {
         count: d.value,
       }));
 
+      console.log(finalData); // Débogage
+      console.log("Hay"); // Débogage
+
       const DataDec = groupByDec(finalData);
         
-        const svg = d3.select("#bar-chart");
-        const margin = 10;
-        const width = 100;
+      const svg = d3.select("#bar-chart");
+      const margin = 10;
+      const width = 100;
 
-        d3.select("#legAnn")
-            .selectAll("text")
-            .data(DataDec)
-            .join("text")
-            .text(d => d.year)
-            .attr("text-anchor", "middle")
-            .attr("transform", (d,i) => `translate(${i * (width + margin)}, 0)`)
-            .style("font-family", "'Inter', sans-serif")
-            .style("font-weight", 700)
-            .style("fill", "#E8E8E8");
+      d3.select("#legAnn")
+          .selectAll("text")
+          .data(DataDec)
+          .join("text")
+          .text(d => d.year)
+          .attr("text-anchor", "middle")
+          .attr("transform", (d,i) => `translate(${i * (width + margin)}, 0)`)
+          .style("font-family", "'Inter', sans-serif")
+          .style("font-weight", 700)
+          .style("fill", "#E8E8E8");
 
-        d3.select("#legCount")
-            .selectAll("text")
-            .style("font-family", "'Inter', sans-serif")
-            .style("font-weight", 700)
-            .style("fill", "#E8E8E8");
+      d3.select("#legCount")
+          .selectAll("text")
+          .style("font-family", "'Inter', sans-serif")
+          .style("font-weight", 700)
+          .style("fill", "#E8E8E8");
 
-        d3.select("#histogramme")
-            .selectAll("rect")
-            .data(DataDec)
-            .join("rect")
-            .attr("class", "histobarre")
-            .style("width", width)
-            .style("height", 0)
-            .style("fill", "url(#gradient)")
-            .attr("transform", (d,i) => `translate(${i * (width + margin)}, 0) scale(1,-1)`)
-            .transition().duration(350).ease(d3.easeLinear)
-            .style("height", d => `${d.count / 3}`);
+      d3.select("#histogramme")
+          .selectAll("rect")
+          .data(DataDec)
+          .join("rect")
+          .attr("class", "histobarre")
+          .style("width", width)
+          .style("height", 0)
+          .style("fill", "url(#gradient)")
+          .attr("transform", (d,i) => `translate(${i * (width + margin)}, 0) scale(1,-1)`)
+          .transition().duration(350).ease(d3.easeLinear)
+          .style("height", d => `${d.count / 3}`)
+          
+          
+      d3.selectAll(".histobarre")
+          .data(DataDec)
+          .on("click", d => Aff_Detail(d));
+
+      
 
       /*const margin = { top: 20, right: 100, bottom: 20, left: -120 };
       const width = window.innerWidth * 0.8;
