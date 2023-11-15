@@ -84,96 +84,7 @@ function affiche_decenie() {
       return group;
     }
 
-    function groupByAnn(tab) {
-
-      let annee = tab[0]["year_ceremony"];
-      let annvalue = 0;
-      let indexann = 0;
-      let countcat = 0;
-      let catvalue = 0;
-      let catname = tab[0]["category"];
-      let nomine = {};
-      let cat = {};
-      let group = {};
-
-      for (let i = 0; i < tab.length; i++) {
-        if (tab[i]["year_ceremony"] == annee) {
-          // Même année
-
-          if (tab[i]["category"] == catname) {
-            // Même catégorie
-            nomine[catvalue] = tab[i];
-            annvalue++;
-            catvalue++;
-
-            // console.log("cat");
-
-          } else {
-            // Changement catégorie
-            // console.log(nomine);
-
-            cat[catname] = {category: catname, count: catvalue, listN: nomine};
-            countcat++;
-
-            nomine = {};
-
-            catname = tab[i]["category"];
-            catvalue = 0;
-
-            nomine[catvalue] = tab[i];
-            annvalue++;
-            catvalue++;
-
-            // console.log(catname); //Débogage
-
-          }
-
-
-        // } else if (annee == 0) {
-
-        //   annee = tab[i]["year_ceremony"];
-        //   console.log(annee); //Débogage
-        //   catname = tab[i]["category"];
-        //   catvalue = 0;
-
-        //   nomine[catvalue] = tab[i];
-        //   annvalue++;
-        //   catvalue++;
-
-        } else {
-          // Changement annee
-          
-          console.log(annee); //Débogage
-
-          cat[catname] = {category: catname, count: catvalue, listN: nomine};
-          countcat = 0;
-          nomine = {};
-          cat = {};
-
-          group[indexann] = {year: annee, count: annvalue, category: cat};
-          indexann++;
-          annvalue = 0;
-
-          annee = tab[i]["year_ceremony"];
-          console.log(annee); //Débogage
-          catname = tab[i]["category"];
-          catvalue = 0;
-
-          nomine[catvalue] = tab[i];
-          annvalue++;
-          catvalue++;
-
-          console.log(group);
-          console.log("-----------------")
-
-        }
-      }
-
-      // cat[catname] = { category: catname, count: catvalue, listN: nomine };
-      // group[indexann] = { year: annee, count: annvalue, category: cat };
-
-      return group;
-    }
+    
 
     d3.select("#Decennie")
       .style("display", "block");
@@ -205,6 +116,8 @@ function affiche_decenie() {
       console.log("Hay"); // Débogage
 
       const DataDec = groupByDec(finalData);
+
+      console.log(DataDec);
         
       const svg = d3.select("#bar-chart");
       const margin = 10;
@@ -237,7 +150,7 @@ function affiche_decenie() {
           .style("fill", "url(#gradient)")
           .attr("transform", (d,i) => `translate(${i * (width + margin)}, 0) scale(1,-1)`)
           .transition().duration(350).ease(d3.easeLinear)
-          .style("height", d => `${d.count / 3}`)
+          .style("height", d => `${d.count / 3}`);
           
           
       d3.selectAll(".histobarre")
