@@ -32,6 +32,10 @@ h2 {
     text-transform: uppercase;
 }
 
+.bold {
+    font-weight: 700;
+}
+
 .violetTxt {
     color: var(--Violet2);
 }
