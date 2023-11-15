@@ -152,34 +152,36 @@ function affiche_decenie() {
           .transition().duration(350).ease(d3.easeLinear)
           .style("height", d => `${d.count / 3}`);
           
-          
-      d3.selectAll(".histobarre")
-          .data(DataDec)
-          .on("click", d => Aff_annee(d));
-
-      d3.selectAll(".histobarre")
-          .on("mouseenter",function(e,d){ //this = objeft touché
+          setTimeout(() => {
             d3.selectAll(".histobarre")
-                .transition()
-                .style("opacity", 0.5);
-            
-            d3.select(this)
-                .transition()
-                .style("opacity", 1)
-                .filter("drop-shadow", "0px 0px 10px 0px #C294FC");
+              .data(DataDec)
+              .on("click", d => Aff_annee(d));
 
-            d3.select("#infoDec") 
-              .style("display", "block");
-      });
+            d3.selectAll(".histobarre")
+                .on("mouseenter",function(e,d){ //this = objeft touché
+                    d3.selectAll(".histobarre")
+                        .transition()
+                        .style("opacity", 0.5);
+                    
+                    d3.select(this)
+                        .transition()
+                        .style("opacity", 1)
+                        .filter("drop-shadow", "0px 0px 10px 0px #C294FC");
 
-      d3.selectAll(".histobarre")
-        .on("mouseleave",function(e,d){ //this = objeft touché
-          d3.selectAll(".histobarre")
-              .style("opacity", 1);
+                    d3.select("#infoDec") 
+                        .style("display", "block");
+            });
 
-          d3.select("#infoDec") 
-              .style("display", "none");  
-      });
+            d3.selectAll(".histobarre")
+                .on("mouseleave",function(e,d){ //this = objeft touché
+                    d3.selectAll(".histobarre")
+                        .style("opacity", 1);
+
+                    d3.select("#infoDec") 
+                        .style("display", "none");  
+              });
+          }, "350");
+      
       
 
       /*const margin = { top: 20, right: 100, bottom: 20, left: -120 };
