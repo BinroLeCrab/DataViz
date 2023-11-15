@@ -25,10 +25,11 @@ function affiche_decenie() {
       let value = 0;
       let group = [];
       let index = 0;
+      let indexAnn = 0;
       let annee = "";
-      let listA = {};
+      let listA = [];
   
-      console.log("hey"); // Débogage
+      // console.log("hey"); // Débogage
   
       // Parcours du tableau par année
       for (let i = 0; i < tab.length; i++) {
@@ -36,52 +37,141 @@ function affiche_decenie() {
         if (tab[i]["year"] == 1931 || tab[i]["year"] == annee_debut + 10) {
 
           // Pour finir une décennie
-          console.log(tab[i]); // Débogage
+          // console.log(tab[i]); // Débogage
   
           annee = `${annee_debut} - ${annee_fin}`;
-          console.log(annee); // Débogage
+          // console.log(annee); // Débogage
   
           group[index] = { year: annee, count: value, list: listA }; // Compilation dans le tableau de fin
           index++;
-          console.log(group); // Débogage
-          
-          listA = {};
+          // console.log(group); // Débogage
+          listA = [];
+          indexAnn = 0;
 
-          listA[tab[i]["year"]] = tab[i];
+          listA[indexAnn] = tab[i];
+          indexAnn++;
           annee_debut = tab[i]["year"];
           value = tab[i]["count"];
 
         } else if (tab[i]["year"] == 2023) {
 
           // Pour que le tableau aille jusqu'à 2023
-          console.log(tab[i]); // Débogage
+          // console.log(tab[i]); // Débogage
   
           annee_fin = tab[i]["year"];
           value = value + tab[i]["count"];
   
           annee = `${annee_debut} - ${annee_fin}`;
-          console.log(annee); // Débogage
+          // console.log(annee); // Débogage
 
-          listA[tab[i]["year"]] = tab[i];
-          console.log(listA);
+          listA[indexAnn] = tab[i];
+          indexAnn++;
+          // console.log(listA);
   
           group[index] = { year: annee, count: value, list: listA };
           index++;
-          console.log(group); // Débogage
+          // console.log(group); // Débogage
 
         } else {
 
           // Pour les années classiques
           annee_fin = tab[i]["year"];
           value = value + tab[i]["count"];
-          listA[tab[i]["year"]] = tab[i];
-          console.log(listA); //Débogage
+          listA[indexAnn] = tab[i];
+          indexAnn++;
+          // console.log(listA); //Débogage
 
         }
       }
   
       // Renvoi du tableau des décennies
       return group;
+    }
+
+    // Fonction de groupement par catégorie
+    function groupByCat(tab){
+
+        let catval = 0;
+        let CurrentCat = tab[0]["category"];
+        let index = 0;
+        let group = [];
+        let listN = [];
+    
+        // console.log("-------------")
+        // console.log(tab);
+    
+        // console.log(tab.length);
+        // console.log("-------------")
+    
+        for (let i = 0; i < tab.length; i++) {
+    
+            if (tab[i]["category"] == CurrentCat){
+    
+                listN[catval] = tab[i];
+                catval++;
+    
+            } else {
+    
+                // console.log(CurrentCat);
+    
+                group[index] = {name: CurrentCat, count: catval, nomine: listN};
+                catval = 0;
+    
+                CurrentCat = tab[i]["category"];
+                listN = [];
+                index++;
+    
+                listN[catval] = tab[i];
+                catval++;
+    
+            }
+        }
+    
+        group[index] = {name: CurrentCat, count: catval, nomine: listN};
+    
+        return group;
+        
+      }
+  
+    // Fonction de groupement pas année
+    function groupByAnn(tab) {
+    
+        let annvalue = 0;
+        let CurrentAnn = tab[0]["year_ceremony"];
+        let index = 0;
+        let group = [];
+        let listN = [];
+    
+        for (let i = 0; i < tab.length; i++) {
+            if (tab[i]["year_ceremony"] == CurrentAnn){
+                
+                listN[annvalue] = tab[i];
+                annvalue++;
+    
+            } else {
+    
+                console.log(CurrentAnn);
+                group[index] = {year: CurrentAnn, count: annvalue, category: groupByCat(listN)};
+                annvalue = 0;
+    
+                CurrentAnn = tab[i]["year_ceremony"];
+                listN = [];
+                index++;
+    
+                listN[annvalue] = tab[i];
+                annvalue++;
+    
+            }
+            
+        }
+    
+        group[index] = {year: CurrentAnn, count: annvalue, category: groupByCat(listN)};
+    
+        // console.log(CurrentAnn);
+        // console.log(listN);
+        // console.log(index);
+    
+        return group;
     }
 
     
@@ -112,10 +202,13 @@ function affiche_decenie() {
         count: d.value,
       }));
 
-      console.log(finalData); // Débogage
+      const DataByYear = groupByAnn(data);
+
+      console.log ("bb")
+      console.log(DataByYear); // Débogage
       console.log("Hay"); // Débogage
 
-      const DataDec = groupByDec(finalData);
+      const DataDec = groupByDec(DataByYear);
 
       console.log(DataDec);
         
