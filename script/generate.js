@@ -1,4 +1,5 @@
 
+console.log('AA');
 d3.json("./src/dataGroup.json").then(function (data) {
 
 window.addEventListener("load", affiche_accueil, false);
