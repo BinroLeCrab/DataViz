@@ -1,293 +1,128 @@
 
+d3.json("./src/dataGroup.json").then(function (data) {
+
 window.addEventListener("load", affiche_accueil, false);
 
+console.log('AbA');
+// console.log(data);
+const Data = data;
+
+// console.log(Data)
+
 function affiche_accueil() {
-    d3.select("#Decennie")
-      .style("display", "none");
-    
-    document.getElementById("enter").addEventListener("click", affiche_decenie, false);
+  d3.select("#Decennie")
+    .style("display", "none");
+  
+  document.getElementById("enter").addEventListener("click", affiche_decenie, false);
 }
 
 function Aff_annee(d){
-    console.log(d.list[2022]["count"]);
+  console.log(d.list[0]["count"]);
 }
-  
 
-
-  
 function affiche_decenie() {
 
-    // Fonction de groupement par décennie
-    function groupByDec(tab) {
-      // Définition des variables
-      let annee_debut = 1928;
-      let annee_fin;
-      let value = 0;
-      let group = [];
-      let index = 0;
-      let indexAnn = 0;
-      let annee = "";
-      let listA = [];
-  
-      // console.log("hey"); // Débogage
-  
-      // Parcours du tableau par année
-      for (let i = 0; i < tab.length; i++) {
+  // console.log('une constante ?');
+  // console.log(Data);
 
-        if (tab[i]["year"] == 1931 || tab[i]["year"] == annee_debut + 10) {
+  d3.select("#Decennie")
+    .style("display", "block");
 
-          // Pour finir une décennie
-          // console.log(tab[i]); // Débogage
-  
-          annee = `${annee_debut} - ${annee_fin}`;
-          // console.log(annee); // Débogage
-  
-          group[index] = { year: annee, count: value, list: listA }; // Compilation dans le tableau de fin
-          index++;
-          // console.log(group); // Débogage
-          listA = [];
-          indexAnn = 0;
+  d3.select("#Accueil")
+    .style("display", "none");
 
-          listA[indexAnn] = tab[i];
-          indexAnn++;
-          annee_debut = tab[i]["year"];
-          value = tab[i]["count"];
+  // d3.json("./src/data.json").then(function (data) {
 
-        } else if (tab[i]["year"] == 2023) {
+  //   console.log(data);
 
-          // Pour que le tableau aille jusqu'à 2023
-          // console.log(tab[i]); // Débogage
-  
-          annee_fin = tab[i]["year"];
-          value = value + tab[i]["count"];
-  
-          annee = `${annee_debut} - ${annee_fin}`;
-          // console.log(annee); // Débogage
+  //   const DataByYear = groupByAnn(data);
 
-          listA[indexAnn] = tab[i];
-          indexAnn++;
-          // console.log(listA);
-  
-          group[index] = { year: annee, count: value, list: listA };
-          index++;
-          // console.log(group); // Débogage
+  //   console.log ("bb")
+  //   console.log(DataByYear); // Débogage
+  //   console.log("Hay"); // Débogage
 
-        } else {
+  //   const DataDec = groupByDec(DataByYear);
 
-          // Pour les années classiques
-          annee_fin = tab[i]["year"];
-          value = value + tab[i]["count"];
-          listA[indexAnn] = tab[i];
-          indexAnn++;
-          // console.log(listA); //Débogage
+  //   console.log("DataDec");
+      
+    const svg = d3.select("#bar-chart");
+    const margin = 10;
+    const width = 100;
 
-        }
-      }
-  
-      // Renvoi du tableau des décennies
-      return group;
-    }
+    d3.select("#legAnn")
+        .selectAll("text")
+        .data(Data)
+        .join("text")
+        .text(d => d.year)
+        .attr("text-anchor", "middle")
+        .attr("transform", (d,i) => `translate(${i * (width + margin)}, 0)`)
+        .style("font-family", "'Inter', sans-serif")
+        .style("font-weight", 700)
+        .style("fill", "#E8E8E8");
 
-    // Fonction de groupement par catégorie
-    function groupByCat(tab){
+    d3.select("#legCount")
+        .selectAll("text")
+        .style("font-family", "'Inter', sans-serif")
+        .style("font-weight", 700)
+        .style("fill", "#E8E8E8");
 
-        let catval = 0;
-        let CurrentCat = tab[0]["category"];
-        let index = 0;
-        let group = [];
-        let listN = [];
-    
-        // console.log("-------------")
-        // console.log(tab);
-    
-        // console.log(tab.length);
-        // console.log("-------------")
-    
-        for (let i = 0; i < tab.length; i++) {
-    
-            if (tab[i]["category"] == CurrentCat){
-    
-                listN[catval] = tab[i];
-                catval++;
-    
-            } else {
-    
-                // console.log(CurrentCat);
-    
-                group[index] = {name: CurrentCat, count: catval, nomine: listN};
-                catval = 0;
-    
-                CurrentCat = tab[i]["category"];
-                listN = [];
-                index++;
-    
-                listN[catval] = tab[i];
-                catval++;
-    
-            }
-        }
-    
-        group[index] = {name: CurrentCat, count: catval, nomine: listN};
-    
-        return group;
+    d3.select("#histogramme")
+        .selectAll("rect")
+        .data(Data)
+        .join("rect")
+        .attr("class", "histobarre")
+        .style("width", width)
+        .style("height", 0)
+        .style("fill", "url(#gradient)")
+        .attr("transform", (d,i) => `translate(${i * (width + margin)}, 0) scale(1,-1)`)
+        .transition().duration(350).ease(d3.easeLinear)
+        .style("height", d => `${d.count / 3}`);
         
-      }
-  
-    // Fonction de groupement pas année
-    function groupByAnn(tab) {
-    
-        let annvalue = 0;
-        let CurrentAnn = tab[0]["year_ceremony"];
-        let index = 0;
-        let group = [];
-        let listN = [];
-    
-        for (let i = 0; i < tab.length; i++) {
-            if (tab[i]["year_ceremony"] == CurrentAnn){
-                
-                listN[annvalue] = tab[i];
-                annvalue++;
-    
-            } else {
-    
-                console.log(CurrentAnn);
-                group[index] = {year: CurrentAnn, count: annvalue, category: groupByCat(listN)};
-                annvalue = 0;
-    
-                CurrentAnn = tab[i]["year_ceremony"];
-                listN = [];
-                index++;
-    
-                listN[annvalue] = tab[i];
-                annvalue++;
-    
-            }
-            
-        }
-    
-        group[index] = {year: CurrentAnn, count: annvalue, category: groupByCat(listN)};
-    
-        // console.log(CurrentAnn);
-        // console.log(listN);
-        // console.log(index);
-    
-        return group;
-    }
+        setTimeout(() => {
+          d3.selectAll(".histobarre")
+            .data(Data)
+            .on("click", d => Aff_annee(d));
 
-    
+          d3.selectAll(".histobarre")
+              .data(Data)
+              .on("mouseenter", function(d){ //this = objeft touché
+                  d3.selectAll(".histobarre")
+                      .transition()
+                      .style("opacity", 0.5);
+                  
+                  d3.select(this)
+                      .transition()
+                      .style("opacity", 1)
+                      .filter("drop-shadow", "0px 0px 10px 0px #C294FC");
 
-    d3.select("#Decennie")
-      .style("display", "block");
+                  d3.select("#infoDec") 
+                      .style("display", "block");
+                  
+                  d3.select('#nbNomDec')
+                      .text(d.count);
 
-    d3.select("#Accueil")
-      .style("display", "none");
-  
-    d3.json("./src/data.json").then(function (data) {
+                  d3.select('#dateDebut')
+                      .text(d.list[0]['year']);
 
-      console.log(data);
+                  d3.select('#dateFin')
+                      .text(d.list[(d.list.length)-1]['year']);
+          });
 
-      // groupByAnn(data);
+          d3.selectAll(".histobarre")
+              .on("mouseleave",function(e,d){ //this = objeft touché
+                  d3.selectAll(".histobarre")
+                      .style("opacity", 1);
 
-
-      const filteredData = data.filter(
-        (d) => d.year_ceremony >= 1928 && d.year_ceremony <= 2023
-      );
-      const nominationsByYear = d3
-        .nest()
-        .key((d) => d.year_ceremony)
-        .rollup((v) => v.length)
-        .entries(filteredData);
-      const finalData = nominationsByYear.map((d) => ({
-        year: parseInt(d.key),
-        count: d.value,
-      }));
-
-      const DataByYear = groupByAnn(data);
-
-      console.log ("bb")
-      console.log(DataByYear); // Débogage
-      console.log("Hay"); // Débogage
-
-      const DataDec = groupByDec(DataByYear);
-
-      console.log(DataDec);
-        
-      const svg = d3.select("#bar-chart");
-      const margin = 10;
-      const width = 100;
-
-      d3.select("#legAnn")
-          .selectAll("text")
-          .data(DataDec)
-          .join("text")
-          .text(d => d.year)
-          .attr("text-anchor", "middle")
-          .attr("transform", (d,i) => `translate(${i * (width + margin)}, 0)`)
-          .style("font-family", "'Inter', sans-serif")
-          .style("font-weight", 700)
-          .style("fill", "#E8E8E8");
-
-      d3.select("#legCount")
-          .selectAll("text")
-          .style("font-family", "'Inter', sans-serif")
-          .style("font-weight", 700)
-          .style("fill", "#E8E8E8");
-
-      d3.select("#histogramme")
-          .selectAll("rect")
-          .data(DataDec)
-          .join("rect")
-          .attr("class", "histobarre")
-          .style("width", width)
-          .style("height", 0)
-          .style("fill", "url(#gradient)")
-          .attr("transform", (d,i) => `translate(${i * (width + margin)}, 0) scale(1,-1)`)
-          .transition().duration(350).ease(d3.easeLinear)
-          .style("height", d => `${d.count / 3}`);
-          
-          setTimeout(() => {
-            d3.selectAll(".histobarre")
-              .data(DataDec)
-              .on("click", d => Aff_annee(d));
-
-            d3.selectAll(".histobarre")
-                .data(DataDec)
-                .on("mouseenter", function(d){ //this = objeft touché
-                    d3.selectAll(".histobarre")
-                        .transition()
-                        .style("opacity", 0.5);
-                    
-                    d3.select(this)
-                        .transition()
-                        .style("opacity", 1)
-                        .filter("drop-shadow", "0px 0px 10px 0px #C294FC");
-
-                    d3.select("#infoDec") 
-                        .style("display", "block");
-                    
-                    d3.select('#nbNomDec')
-                        .text(d.count);
-
-                    d3.select('#dateDebut')
-                        .text(d.list[0]['year']);
-
-                    d3.select('#dateFin')
-                        .text(d.list[(d.list.length)-1]['year']);
+                  d3.select("#infoDec") 
+                      .style("display", "none");  
             });
+        }, "350");
 
-            d3.selectAll(".histobarre")
-                .on("mouseleave",function(e,d){ //this = objeft touché
-                    d3.selectAll(".histobarre")
-                        .style("opacity", 1);
-
-                    d3.select("#infoDec") 
-                        .style("display", "none");  
-              });
-          }, "350");
-      
-      
-
-      /*const margin = { top: 20, right: 100, bottom: 20, left: -120 };
+    // });
+  }
+});
+  
+/*const margin = { top: 20, right: 100, bottom: 20, left: -120 };
       const width = window.innerWidth * 0.8;
       const height = window.innerHeight * 0.6 - margin.top - margin.bottom;
   
@@ -358,6 +193,4 @@ function affiche_decenie() {
           filmDetails.appendChild(p);
         });
       }
-    */});
-  }
-  
+    */
