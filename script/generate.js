@@ -251,7 +251,8 @@ function affiche_decenie() {
               .on("click", d => Aff_annee(d));
 
             d3.selectAll(".histobarre")
-                .on("mouseenter",function(e,d){ //this = objeft touché
+                .data(DataDec)
+                .on("mouseenter", function(d){ //this = objeft touché
                     d3.selectAll(".histobarre")
                         .transition()
                         .style("opacity", 0.5);
@@ -263,6 +264,15 @@ function affiche_decenie() {
 
                     d3.select("#infoDec") 
                         .style("display", "block");
+                    
+                    d3.select('#nbNomDec')
+                        .text(d.count);
+
+                    d3.select('#dateDebut')
+                        .text(d.list[0]['year']);
+
+                    d3.select('#dateFin')
+                        .text(d.list[(d.list.length)-1]['year']);
             });
 
             d3.selectAll(".histobarre")
