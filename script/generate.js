@@ -8,17 +8,7 @@ function affiche_accueil() {
 
   let btn = document.getElementById("enter");
   
-  btn.addEventListener("mouseenter", function(){
-
-    document.getElementById("door").src = "asset/DoorO.svg";
-
-  }, false);
-
-  btn.addEventListener("mouseleave", function(){
-
-    document.getElementById("door").src = "asset/DoorC.svg";
-
-  }, false);
+  
 
   btn.addEventListener("click", affiche_decenie, false);
 }

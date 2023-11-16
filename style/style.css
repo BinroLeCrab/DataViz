@@ -91,6 +91,7 @@ h2 {
 }
 
 .Btn {
+    cursor: pointer;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -101,6 +102,10 @@ h2 {
     font-family: 'Inter', sans-serif;
     font-weight: 700;
     font-size: 32px;
+}
+
+#door {
+    position: relative;
 }
 
 #Accueil > div > * {
