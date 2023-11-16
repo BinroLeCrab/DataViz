@@ -14,8 +14,12 @@ function affiche_accueil() {
 }
 
 function Aff_annee(data, d){
-    console.log(data);
+    console.log(d);
     console.log(d.year);
+
+    let cat = d.category;
+
+    console.log(cat);
 
     d3.select("#info-Bulle")
         .style("display", "none")
@@ -31,7 +35,39 @@ function Aff_annee(data, d){
     d3.select("#NomAn")
         .text(d.year);
     
+    d3.select("#Annee")
+        .append("div")
+        .attr("class", "infoAn");
+
+      for (let i = 0; i < cat.length; i++) {
+
+          let currentcat = cat[i]["nomine"];
+
+          d3.select(".infoAn")
+              .append("p")
+              .text(cat[i]["name"]);
+
+          console.log(currentcat);
+
+          for (let y = 0; y < currentcat.length; y++) {
+
+              if (currentcat[y]['winner']== true) {
+
+                d3.select(".infoAn")
+                  .append("p")
+                  .text(`${currentcat[y]["name"]} - ${currentcat[y]["film"]}`);
+
+              }
+          }
+
+          d3.select(".infoAn")
+              .append("p")
+              .text("------");
+      }
+    
     document.getElementById("back").addEventListener("click", affiche_decenie, false);
+
+    
 }
 
 
@@ -114,7 +150,9 @@ function affiche_decenie() {
       .style("display", "block");
 
     d3.select("#Annee")
-      .style("display", "none");
+      .style("display", "none")
+      .selectAll(".infoAn")
+      .remove();
 
     d3.select("#Accueil")
       .style("display", "none");
