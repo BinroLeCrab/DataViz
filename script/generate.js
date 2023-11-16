@@ -39,26 +39,31 @@ function affiche_decenie() {
 
     function Aff_infoBulle(data, d, index, pointer){
 
+        let coo = [[30,18], [4,28], [2,35], [2,42], [2,50], [2,58], [2,65], [2,39], [2,32], [2,25], [25,15]]; // =>7 => right
+
         let liste = d.list;
         console.log(data);
         console.log(liste);
 
         d3.select("#info-Bulle")
-             .selectAll("div")
+             .selectAll(".AnnDec")
              .remove();
 
         d3.select("#info-Bulle")
           .style("display", "block")
+          .style("top",`${coo[index][0]}vh`)
+          .style("left",`unset`)
+          .style("right",`unset`)
           .selectAll("h3")
           .text(d.year);
         
-          // if (index <= 5) {
-          //   d3.select("#info-Bulle")
-          //       .style("right",`${index * 60}px`);
-          // } else {
-          //   d3.select("#info-Bulle")
-          //       .style("left",`${index * 60}px`);
-          // }
+          if (index >= 7) {
+            d3.select("#info-Bulle")
+                .style("right",`${coo[index][1]}vw`);
+          } else {
+            d3.select("#info-Bulle")
+                .style("left",`${coo[index][1]}vw`);
+          };
 
         // d3.select("#info-Bulle")
         //   .style("display", "block")
@@ -179,8 +184,16 @@ function affiche_decenie() {
         
         setTimeout(() => {
           d3.selectAll(".histobarre")
-            .data(Data)
-            .on("click", (d, i) => Aff_infoBulle(Data, d, i)); //Aff_annee(Data, d)
+              .data(Data)
+              .on("click", (d, i) => Aff_infoBulle(Data, d, i)); //Aff_annee(Data, d)
+
+          d3.selectAll(".ClickNone")
+              .on("click", function() {
+                d3.select("#info-Bulle")
+                    .style("display", "none")
+                    .selectAll(".AnnDec")
+                    .remove();
+              });
 
           d3.selectAll(".histobarre")
               .data(Data)
@@ -219,7 +232,7 @@ function affiche_decenie() {
                   
                   // d3.select("#info-Bulle")
                   //     .style("display", "none")
-                  //     .selectAll("div")
+                  //     .selectAll(".AnnDec")
                   //     .remove();
             });
         }, "350");
