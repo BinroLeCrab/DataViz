@@ -48,13 +48,13 @@ function affiche_decenie() {
           .selectAll("h3")
           .text(d.year);
         
-          if (index <= 5) {
-            d3.select("#info-Bulle")
-                .style("right",`${index * 60}px`);
-          } else {
-            d3.select("#info-Bulle")
-                .style("left",`${index * 60}px`);
-          }
+          // if (index <= 5) {
+          //   d3.select("#info-Bulle")
+          //       .style("right",`${index * 60}px`);
+          // } else {
+          //   d3.select("#info-Bulle")
+          //       .style("left",`${index * 60}px`);
+          // }
 
         // d3.select("#info-Bulle")
         //   .style("display", "block")
