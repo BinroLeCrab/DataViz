@@ -165,11 +165,17 @@ function affiche_decenie() {
         .join("rect")
         .attr("class", "histobarre")
         .attr("width", width)
-        .attr("height", 0)
+        // .attr("height", 0)
         .style("fill", "url(#gradient)")
         .attr("transform", (d,i) => `translate(${i * (width + margin)}, 0) scale(1,-1)`)
-        .transition().duration(350).ease(d3.easeLinear)
+        // .transition().duration(350).ease(d3.easeLinear)
         .attr("height", d => `${d.count / 3}`);
+
+        gsap.from(".histobarre", {
+          duration : 0.2,
+          height : "0px",
+          stagger: 0.2
+        })
         
         setTimeout(() => {
           d3.selectAll(".histobarre")
