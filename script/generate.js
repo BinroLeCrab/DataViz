@@ -172,9 +172,9 @@ function affiche_decenie() {
         .attr("height", d => `${d.count / 3}`);
 
         gsap.from(".histobarre", {
-          duration : 0.2,
+          duration : 0.15,
           height : "0px",
-          stagger: 0.2
+          stagger: 0.1
         })
         
         setTimeout(() => {
