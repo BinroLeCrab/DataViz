@@ -1,14 +1,6 @@
-
-console.log('AA');
-d3.json("./src/dataGroup.json").then(function (data) {
-
 window.addEventListener("load", affiche_accueil, false);
 
-console.log('AbA');
-// console.log(data);
-const Data = data;
-
-// console.log(Data)
+console.log('AA');
 
 function affiche_accueil() {
   d3.select("#Decennie")
@@ -17,7 +9,8 @@ function affiche_accueil() {
   document.getElementById("enter").addEventListener("click", affiche_decenie, false);
 }
 
-function Aff_annee(d){
+function Aff_annee(data, d){
+  console.log(data);
   console.log(d.list[0]["count"]);
 }
 
@@ -31,6 +24,16 @@ function affiche_decenie() {
 
   d3.select("#Accueil")
     .style("display", "none");
+
+  
+    d3.json("./src/dataGroup.json").then(function (data) {
+
+
+      console.log('AbA');
+      // console.log(data);
+      const Data = data;
+      
+      // console.log(Data)      
 
   // d3.json("./src/data.json").then(function (data) {
 
@@ -82,7 +85,7 @@ function affiche_decenie() {
         setTimeout(() => {
           d3.selectAll(".histobarre")
             .data(Data)
-            .on("click", d => Aff_annee(d));
+            .on("click", d => Aff_annee(Data, d));
 
           d3.selectAll(".histobarre")
               .data(Data)
@@ -119,9 +122,9 @@ function affiche_decenie() {
             });
         }, "350");
 
-    // });
+     });
   }
-});
+
   
 /*const margin = { top: 20, right: 100, bottom: 20, left: -120 };
       const width = window.innerWidth * 0.8;
