@@ -23,7 +23,7 @@ box-sizing: border-box;
 
     /* Dégradés */
     --Radial-Fond: radial-gradient(71.9% 79.73% at 50% 50%, #1B2735 0%, #0D111780 100%);
-    --Linear-Violet: linear-gradient(180deg, var(--Violet1) 0%, var(--Violet2) 100%);
+    --Linear-Violet: linear-gradient(90deg, var(--Violet1) 0%, var(--Violet2) 100%);
     --Linear-Image: linear-gradient(180deg, #0D111700 0%, #0d1117cc 100%);
 
     /* Background Blur */

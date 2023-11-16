@@ -10,20 +10,105 @@ function affiche_accueil() {
 }
 
 function Aff_annee(data, d){
-  console.log(data);
-  console.log(d.list[0]["count"]);
+    console.log(data);
+    console.log(d.year);
+
+    d3.select("#info-Bulle")
+        .style("display", "none")
+        .selectAll("div")
+        .remove();
+
+    d3.select("#Decennie")
+        .style("display", "none");
+
+    d3.select("#Annee")
+        .style("display", "block");
+
+    d3.select("#NomAn")
+        .text(d.year);
+    
+    document.getElementById("back").addEventListener("click", affiche_decenie, false);
 }
+
 
 function affiche_decenie() {
 
-  // console.log('une constante ?');
-  // console.log(Data);
+    function Aff_infoBulle(data, d, index, pointer){
 
-  d3.select("#Decennie")
-    .style("display", "block");
+        let liste = d.list;
+        console.log(data);
+        console.log(liste);
 
-  d3.select("#Accueil")
-    .style("display", "none");
+        d3.select("#info-Bulle")
+             .selectAll("div")
+             .remove();
+
+        d3.select("#info-Bulle")
+          .style("display", "block")
+          .selectAll("h3")
+          .text(d.year);
+        
+          if (index <= 5) {
+            d3.select("#info-Bulle")
+                .style("right",`${index * 60}px`);
+          } else {
+            d3.select("#info-Bulle")
+                .style("left",`${index * 60}px`);
+          }
+
+        // d3.select("#info-Bulle")
+        //   .style("display", "block")
+        //   .selectAll("h3")
+        //   .data(d.list)
+        //   .join("div")
+        //   .attr("class", "AnnDec");
+        
+        // d3.selectAll(".AnnDec")
+        //   // .data(d.list)
+        //   .selectAll("p")
+        //   .data(d.list)
+        //   .join("p")
+        //   .text((d,i) => d[i].year);
+
+          for (let i = 0; i < liste.length; i++) {
+
+              d3.select("#info-Bulle")
+                .append("div")
+                .attr("class", "AnnDec")
+                .attr("id", `Ann${i}`);
+
+              d3.select(`#Ann${i}`)
+                .append("p")
+                .attr("class", "bold")
+                .text(liste[i]['year']);
+              
+              d3.select(`#Ann${i}`)
+                .append("div")
+                .attr("class", "barAnn")
+                .style("width", `${liste[i]["count"]/2}px`);
+              
+              d3.select(`#Ann${i}`)
+                .append("p")
+                .attr("class", "bold violetTxt AnnCount")
+                .text(`${liste[i]['count']} nominations`);
+          }
+
+          d3.selectAll(".AnnDec")
+              .join(liste)
+              .on("click", (d,i) => Aff_annee(data, liste[i]));
+    }
+
+    // console.log('une constante ?');
+    // console.log(Data);
+
+    d3.select("#Decennie")
+      .style("display", "block");
+
+    d3.select("#Annee")
+      .style("display", "none");
+
+    d3.select("#Accueil")
+      .style("display", "none");
 
   
     d3.json("./src/dataGroup.json").then(function (data) {
@@ -75,21 +160,21 @@ function affiche_decenie() {
         .data(Data)
         .join("rect")
         .attr("class", "histobarre")
-        .style("width", width)
-        .style("height", 0)
+        .attr("width", width)
+        .attr("height", 0)
         .style("fill", "url(#gradient)")
         .attr("transform", (d,i) => `translate(${i * (width + margin)}, 0) scale(1,-1)`)
         .transition().duration(350).ease(d3.easeLinear)
-        .style("height", d => `${d.count / 3}`);
+        .attr("height", d => `${d.count / 3}`);
         
         setTimeout(() => {
           d3.selectAll(".histobarre")
             .data(Data)
-            .on("click", d => Aff_annee(Data, d));
+            .on("click", (d, i) => Aff_infoBulle(Data, d, i)); //Aff_annee(Data, d)
 
           d3.selectAll(".histobarre")
               .data(Data)
-              .on("mouseenter", function(d){ //this = objeft touché
+              .on("mouseenter", function(d, i){ //this = objeft touché
                   d3.selectAll(".histobarre")
                       .transition()
                       .style("opacity", 0.5);
@@ -110,6 +195,8 @@ function affiche_decenie() {
 
                   d3.select('#dateFin')
                       .text(d.list[(d.list.length)-1]['year']);
+
+                  // Aff_infoBulle(Data, d, i);
           });
 
           d3.selectAll(".histobarre")
@@ -119,6 +206,11 @@ function affiche_decenie() {
 
                   d3.select("#infoDec") 
                       .style("display", "none");  
+                  
+                  // d3.select("#info-Bulle")
+                  //     .style("display", "none")
+                  //     .selectAll("div")
+                  //     .remove();
             });
         }, "350");
 

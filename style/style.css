@@ -20,6 +20,15 @@ main {
     display: none;
 }
 
+#Annee {
+    background-color: var(--Fond2);
+    border: var(--Glass);
+    border-radius: var(--Rad1);
+    height: 92vh;
+    margin: 4vh;
+    display: none;
+}
+
 h1 {
     font-weight: 900;
     font-size: 64px;
@@ -68,4 +77,34 @@ h2 {
 
 #Accueil > div > * {
     margin: 0;
+}
+
+#info-Bulle{
+    display: none;
+    position: absolute;
+    width: fit-content;
+    top: 20px;
+    background-color: var(--Noir1);
+    padding: 0px 30px;
+    border-radius: var(--Rad3);
+    border: var(--Glass);
+}
+
+.barAnn {
+    height: 20px;
+    background: var(--Linear-Violet);
+    border-radius: 0px 5px 5px 0px;
+    margin-left: 20px;
+}
+
+.AnnDec {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 300px;
+    justify-content: flex-start;
+}
+
+.AnnCount {
+    margin-left: auto;
 }
