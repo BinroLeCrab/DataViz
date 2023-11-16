@@ -39,6 +39,13 @@ function Aff_annee(data, d){
         .append("div")
         .attr("class", "infoAn");
 
+    d3.selectAll(".cate")
+        .remove();
+
+    d3.select("#Annee")
+        .append("div")
+        .attr("class", "cate");
+
       for (let i = 0; i < cat.length; i++) {
 
           let currentcat = cat[i]["nomine"];
@@ -64,6 +71,19 @@ function Aff_annee(data, d){
               .append("p")
               .text("------");
       }
+
+      d3.json("./src/categorie.json").then(function(data) {
+
+        console.log(data)
+
+          let tabcat = data;
+
+          d3.select(".cate")
+              .selectAll("p")
+              .data(tabcat)
+              .join("p")
+              .html(d => `${d.emote}; ${d.name}`);
+      });
     
     document.getElementById("back").addEventListener("click", affiche_decenie, false);
 
