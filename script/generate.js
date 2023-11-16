@@ -5,8 +5,15 @@ console.log('AA');
 function affiche_accueil() {
   d3.select("#Decennie")
     .style("display", "none");
-  
-  document.getElementById("enter").addEventListener("click", affiche_decenie, false);
+
+  let btn = document.getElementById("enter");
+  btn.addEventListener("mouseenter", function(){
+    document.getElementById("door").src = "asset/DoorO.svg";
+  }, false);
+  btn.addEventListener("mouseleave", function(){
+    document.getElementById("door").src = "asset/DoorC.svg";
+  }, false);
+  btn.addEventListener("click", affiche_decenie, false);
 }
 
 function Aff_annee(data, d){
