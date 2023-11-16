@@ -8,7 +8,7 @@ body {
 
 main {
     position: relative;
-    z-index: 1;
+    z-index: 100;
 }
 
 #Decennie {
@@ -51,12 +51,51 @@ h2 {
 
 #bckg {
     position: fixed;
-    background: var(--Radial-Fond);
     height: 100vh;
     width: 100vw;
     top: 0;
     left: 0;
     z-index: 0;
+}
+
+#gradientBckg {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    background: var(--Radial-Fond);
+    top: 0;
+    left : 0;
+    z-index: 10;
+}
+
+.etoile {
+    position: absolute;
+    height: 130vh;
+    width: 100vw;
+    top: 0px;
+    left : 0px;
+}
+
+#EtFront {
+    z-index: 4;
+}
+
+#EtMid {
+    z-index: 3;
+}
+
+#EtBack {
+    z-index: 2;
+}
+
+#logo {
+    position: absolute;
+    height: 120vh;
+    transform: translate(-50%, -50%);
+    top: 50vh;
+    left : 50vw;
+    z-index: 1;
+    opacity: 0;
 }
 
 #infoDec{
