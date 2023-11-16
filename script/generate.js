@@ -23,7 +23,7 @@ function Aff_annee(data, d){
 
     d3.select("#info-Bulle")
         .style("display", "none")
-        .selectAll("div")
+        .selectAll(".AnnDec")
         .remove();
 
     d3.select("#Decennie")
