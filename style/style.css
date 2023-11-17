@@ -172,7 +172,7 @@ h2 {
     background-color: var(--Fond1);
     backdrop-filter: var(--Blur1);
     padding: 0px 30px 25px;
-    border-radius: var(--Rad3);
+    border-radius: var(--Rad2);
     border: var(--Glass);
     opacity: 1;
 }
