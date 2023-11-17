@@ -22,7 +22,7 @@ function Aff_annee(donnee, d, index, position){
   
             for (let y = 0; y < donneCat.length; y++) {
                 
-                if ((donneeAnn[i]["name"] == donneCat[y]["original"]) || ( typeof donneCat[y]["original2"] !== 'undefined' && (donneeAnn[i]["name"] == donneCat[y]["original2"])) || ( typeof donneCat[y]["original3"] !== 'undefined' && (donneeAnn[i]["name"] == donneCat[y]["original3"]))) {
+                if ((donneeAnn[i]["name"] == donneCat[y]["original"]) || ( typeof donneCat[y]["original2"] !== 'undefined' && (donneeAnn[i]["name"] == donneCat[y]["original2"])) || ( typeof donneCat[y]["original3"] !== 'undefined' && (donneeAnn[i]["name"] == donneCat[y]["original3"]))   || ( typeof donneCat[y]["original4"] !== 'undefined' && (donneeAnn[i]["name"] == donneCat[y]["original4"])) || ( typeof donneCat[y]["original5"] !== 'undefined' && (donneeAnn[i]["name"] == donneCat[y]["original5"])) || ( typeof donneCat[y]["original6"] !== 'undefined' && (donneeAnn[i]["name"] == donneCat[y]["original6"])) || ( typeof donneCat[y]["original7"] !== 'undefined' && (donneeAnn[i]["name"] == donneCat[y]["original7"]))) {
                     
                     donneeAnn[i]["emote"] = donneCat[y]["emote"];
                     donneeAnn[i]["color1"] = donneCat[y]["color1"];
@@ -42,7 +42,8 @@ function Aff_annee(donnee, d, index, position){
     
     }
   
-    
+    function GenCamembert(data){}
+
     d3.json("./src/categorie.json").then(function(data) {
         // console.log(d);
         console.log(d.year);
