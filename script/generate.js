@@ -1,6 +1,6 @@
 window.addEventListener("load", affiche_accueil, false);
 
-console.log('AA');
+// console.log('AA');
 
 function affiche_accueil() {
   d3.select("#Decennie")
@@ -13,10 +13,11 @@ function affiche_accueil() {
   btn.addEventListener("click", affiche_decenie, false);
 }
 
-
-function Aff_annee(donnee, d){
+function Aff_annee(donnee, d, index, position){
 
   function CatAnn(donneeAnn, donneCat){
+
+    
 
     let ListCatAnn = {};
 
@@ -44,17 +45,25 @@ function Aff_annee(donnee, d){
 
   }
 
+  
   d3.json("./src/categorie.json").then(function(data) {
-    console.log(d);
+    // console.log(d);
     console.log(d.year);
+    position[1] = index;
+    console.log(position);
+    
+    let pos = [];
 
+    pos = position;
+    console.log(pos);
+    
     let cat = d.category;
 
     let ListCatAnn = CatAnn(cat,data);
 
-    console.log(cat);
-    console.log("-----");
-    console.log(ListCatAnn);
+    // console.log(cat);
+    // console.log("-----");
+    // console.log(ListCatAnn);
 
     d3.select("#info-Bulle")
         .style("display", "none")
@@ -65,7 +74,9 @@ function Aff_annee(donnee, d){
         .style("display", "none");
 
     d3.select("#Annee")
-        .style("display", "block");
+        .style("display", "block")
+        .selectAll("div")
+        .remove();
 
     d3.select("#NomAn")
         .text(d.year);
@@ -88,35 +99,44 @@ function Aff_annee(donnee, d){
           if (typeof ListCatAnn[i]["nameFR"] !== 'undefined') {
 
               d3.select(".infoAn")
+                  .append("div")
+                  .attr("id", `Cat${i}`)
+                  .attr("class", "Divcate Goodcate")
                   .append("p")
                   .html(`${ListCatAnn[i]["emote"]}; ${ListCatAnn[i]["nameFR"]}`);
                   // .text(ListCatAnn[i]["name"]);
           
           } else {
               d3.select(".infoAn")
-                    .append("p")
-                    .text(ListCatAnn[i]["name"]);
+                  .append("div")
+                  .attr("id", `Cat${i}`)
+                  .attr("class", "Divcate")
+                  .append("p")
+                  .text(ListCatAnn[i]["name"]);
           }
 
-          console.log(currentcat);
+          // console.log(currentcat);
 
           for (let y = 0; y < currentcat.length; y++) {
 
               if (currentcat[y]['winner']== true) {
 
-                d3.select(".infoAn")
+                d3.select(`#Cat${i}`)
                   .append("p")
-                  .text(`${currentcat[y]["name"]} - ${currentcat[y]["film"]}`);
+                  .text(`${currentcat[y]["name"]} - ${currentcat[y]["film"]}`)
+                  .append("p")
+                  .text("------");
 
               }
           }
 
-          d3.select(".infoAn")
-              .append("p")
-              .text("------");
+        d3.select(`#Cat${i}`)
+            .append("p")
+            .text("------");
       }
 
-        console.log(data)
+          
+          d3.selectAll(`.Goodcate`).style("display", 'none');
 
           let tabcat = data;
 
@@ -125,9 +145,52 @@ function Aff_annee(donnee, d){
               .data(tabcat)
               .join("p")
               .html(d => `${d.emote}; ${d.name}`);
+
+          
+      document.getElementById("back").addEventListener("click", affiche_decenie, false);
+
+      setTimeout(() => {
+
+          document.getElementById("More").addEventListener("click", () => {
+
+            //année +1
+
+            let indexDec = 0;
+            indexDec = pos[0];
+            let indexAn = 0;
+            indexAn = pos[1]+1;
+
+            if (indexAn == donnee[indexDec].list.length){
+                indexDec = indexDec + 1;
+                indexAn = 0;
+            }
+            
+            console.log(donnee[indexDec].list[indexAn]);
+            Aff_annee(donnee, donnee[indexDec].list[indexAn], indexAn, [indexDec] );
+            
+          }, false);
+          
+          document.getElementById("Less").addEventListener("click", () => {
+            
+            //année -1
+            
+            let indexDec = 0;
+            indexDec = pos[0];
+            let indexAn = 0;
+            indexAn = pos[1]-1;
+
+            if (indexAn == -1){
+                indexDec = indexDec - 1;
+                indexAn = donnee[indexDec].list.length -1;
+            }
+            
+            console.log(donnee[indexDec].list[indexAn]);
+            Aff_annee(donnee, donnee[indexDec].list[indexAn], indexAn, [indexDec] );
+          
+          }, false);
+        }, 350);
     });
     
-    document.getElementById("back").addEventListener("click", affiche_decenie, false);
 
     
 }
@@ -139,9 +202,11 @@ function affiche_decenie() {
 
         let coo = [[30,18], [4,28], [2,35], [2,42], [2,50], [2,58], [2,45], [2,39], [2,32], [2,25], [25,15]]; // =>7 => right
 
+        let position = [index];
+
         let liste = d.list;
-        console.log(data);
-        console.log(liste);
+        // console.log(data);
+        // console.log(liste);
 
         d3.select("#info-Bulle")
              .selectAll(".AnnDec")
@@ -232,7 +297,7 @@ function affiche_decenie() {
 
           d3.selectAll(".AnnDec")
               .join(liste)
-              .on("click", (d,i) => Aff_annee(data, liste[i]));
+              .on("click", (d,i) => Aff_annee(data, liste[i], i, position));
     }
 
     // console.log('une constante ?');
@@ -253,7 +318,7 @@ function affiche_decenie() {
     d3.json("./src/dataGroup.json").then(function (data) {
 
 
-      console.log('AbA');
+      // console.log('AbA');
       // console.log(data);
       const Data = data;
       
