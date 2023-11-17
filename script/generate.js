@@ -29,7 +29,8 @@ function Aff_annee(donnee, d, index, position){
                     donneeAnn[i]["color2"] = donneCat[y]["color2"];
                     donneeAnn[i]["gradient"] = donneCat[y]["gradient"];
                     donneeAnn[i]["nameFR"] = donneCat[y]["name"];
-        
+                    donneeAnn[i]["nameR"] = donneCat[y]["nameR"];
+                    
                 }
                 
             }
@@ -42,7 +43,74 @@ function Aff_annee(donnee, d, index, position){
     
     }
   
-    function GenCamembert(data){}
+    function GenCamembert(data){
+
+        const cam = d3.select("#cam");
+        
+        cam.selectAll("g").remove();
+
+        const width = 200;
+        const height = 200;
+        const radius = Math.min(width,height) / 2;
+        const gPie = cam.append("g") .attr("transform", `translate(0,0)`);
+
+        const pie = d3.pie()
+            .sort(null)
+            .value(d => d.count);
+        
+        const arc = d3.arc()
+            .innerRadius(0)
+            .outerRadius(radius - 10);
+
+        const tag = d3.arc()
+            .innerRadius(0)
+            .outerRadius(radius * 2);
+  
+        const arcs = gPie.selectAll(".arc")
+            .data(pie(data))
+            .enter().append("g")
+            .attr("class", "arc");
+  
+        arcs.append("path")
+            .attr("d", arc)
+            .attr("fill", (d, i) => data[i].color1);
+  
+        arcs.append("text")
+            .attr("transform", d => `translate(${tag.centroid(d)})`)
+            .attr("dy", "0.35em")
+            .html((d,i) => `${data[i].emote}; ${data[i].nameR}`)
+            .attr("class", "tag")
+            .style("text-anchor", "middle")
+            .style("opacity", "0");
+        
+        arcs.on("mouseenter", function(){ //this = objeft touché
+
+            arcs.transition()
+                .style("opacity", 0.5);
+            
+            d3.select(this)
+                .transition()
+                .style("opacity", 1)
+                .selectAll(".tag")
+                .transition()
+                .style("opacity", 1);
+            
+        });
+
+        arcs.on("mouseleave", function(){ //this = objeft touché
+
+            arcs.transition()
+                .style("opacity", 1);
+            
+            d3.select(this)
+                .selectAll(".tag")
+                .transition()
+                .style("opacity", 0);
+            
+        });
+
+
+    }
 
     d3.json("./src/categorie.json").then(function(data) {
         // console.log(d);
@@ -89,6 +157,8 @@ function Aff_annee(donnee, d, index, position){
         d3.select("#Annee")
             .append("div")
             .attr("class", "cate");
+        
+        GenCamembert(ListCatAnn);
     
         for (let i = 0; i < ListCatAnn.length; i++) {
 
@@ -99,7 +169,7 @@ function Aff_annee(donnee, d, index, position){
                 d3.select(".infoAn")
                     .append("div")
                     .attr("id", `Cat${i}`)
-                    .attr("class", "Divcate Goodcate")
+                    .attr("class", "Divcate")
                     .append("p")
                     .html(`${ListCatAnn[i]["emote"]}; ${ListCatAnn[i]["nameFR"]}`);
                     // .text(ListCatAnn[i]["name"]);
@@ -124,8 +194,6 @@ function Aff_annee(donnee, d, index, position){
                     d3.select(`#Cat${i}`)
                         .append("p")
                         .text(`${currentcat[y]["name"]} - ${currentcat[y]["film"]}`)
-                        .append("p")
-                        .text("------");
 
                 }
             }
@@ -135,16 +203,13 @@ function Aff_annee(donnee, d, index, position){
                 .text("------");
         }
 
-            
-            d3.selectAll(`.Goodcate`).style("display", 'none');
+            // let tabcat = data;
 
-            let tabcat = data;
-
-            d3.select(".cate")
-                .selectAll("p")
-                .data(tabcat)
-                .join("p")
-                .html(d => `${d.emote}; ${d.name}`);
+            // d3.select(".cate")
+            //     .selectAll("p")
+            //     .data(tabcat)
+            //     .join("p")
+            //     .html(d => `${d.emote}; ${d.name}`);
 
             
         document.getElementById("back").addEventListener("click", affiche_decenie, false);
@@ -362,8 +427,7 @@ function affiche_decenie() {
                     
                     d3.select(this)
                         .transition()
-                        .style("opacity", 1)
-                        .filter("drop-shadow", "0px 0px 10px 0px #C294FC");
+                        .style("opacity", 1);
 
                     d3.select("#infoDec") 
                         .style("display", "block");

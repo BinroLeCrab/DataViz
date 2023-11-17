@@ -11,6 +11,7 @@
     },
     {
         "name": "Autres Catégories",
+        "nameR": "Autres Catégories",
         "emote": "&#128193",
         "color1": "#A4B3C5",
         "color2": "#1C2128",
@@ -18,6 +19,7 @@
     },
     {
         "name": "Meilleur Film",
+        "nameR": "Meilleur Film",
         "original": "BEST PICTURE",
         "original2": "OUTSTANDING PICTURE",
         "original3": "OUTSTANDING PRODUCTION",
@@ -30,6 +32,7 @@
     },
     {
         "name": "Meilleur Acteur",
+        "nameR": "Meilleur Acteur",
         "original": "ACTOR IN A LEADING ROLE",
         "original2": "ACTOR",
         "emote": "&#129333",
@@ -39,6 +42,7 @@
     },
     {
         "name": "Meilleur acteur dans un second rôle",
+        "nameR": "Meilleur acteur sec...",
         "original": "ACTOR IN A SUPPORTING ROLE",
         "emote": "&#129333",
         "color1": "#7EE787",
@@ -47,6 +51,7 @@
     },
     {
         "name": "Meilleure Actrice",
+        "nameR": "Meilleure Actrice",
         "original": "ACTRESS IN A LEADING ROLE",
         "original2": "ACTRESS",
         "emote": "&#129333",
@@ -56,6 +61,7 @@
     },
     {
         "name": "Meilleure actrice dans un second rôle",
+        "nameR": "Meilleure actrice sec...",
         "original": "ACTRESS IN A SUPPORTING ROLE",
         "emote": "&#129333",
         "color1": "#E420B9",
@@ -64,6 +70,7 @@
     },
     {
         "name": "Meilleur Film d’animation",
+        "nameR": "Meilleur Film d’an...",
         "original": "ANIMATED FEATURE FILM",
         "emote": "&#128396",
         "color1": "#F3CD2B",
@@ -72,6 +79,7 @@
     },
     {
         "name": "Meilleure photographie",
+        "nameR": "Meilleure photo...",
         "original": "CINEMATOGRAPHY",
         "original2": "CINEMATOGRAPHY (Color)",
         "original3": "CINEMATOGRAPHY (Black-and-White)",
@@ -82,6 +90,7 @@
     },
     {
         "name": "Meilleure création de costumes",
+        "nameR": "Meilleure créa...",
         "original": "COSTUME DESIGN",
         "original2": "COSTUME DESIGN (Black-and-White)",
         "original3": "COSTUME DESIGN (Color)",
@@ -92,6 +101,7 @@
     },
     {
         "name": "Meilleur Réalisateur",
+        "nameR": "Meilleur Réalisateur",
         "original": "DIRECTING",
         "original2": "DIRECTING (Comedy Picture)",
         "original3": "DIRECTING (Dramatic Picture)",
@@ -102,6 +112,7 @@
     },
     {
         "name": "Meilleur Réalisateur Assistant",
+        "nameR": "Meilleur Réali...",
         "original": "ASSISTANT DIRECTOR",
         "emote": "&#129506",
         "color1": "#F97E7E",
@@ -110,6 +121,7 @@
     },
     {
         "name": "Meilleur film documentaire",
+        "nameR": "Meilleur film doc...",
         "original": "DOCUMENTARY (Feature)",
         "original2": "DOCUMENTARY FEATURE FILM",
         "original4": "DOCUMENTARY",
@@ -120,6 +132,7 @@
     },
     {
         "name": "Meilleur court métrage (documentaire)",
+        "nameR": "Meilleur court doc...",
         "original": "DOCUMENTARY (Short Subject)",
         "original2": "DOCUMENTARY SHORT FILM",
         "emote": "&#127811",
@@ -129,6 +142,7 @@
     },
     {
         "name": "Meilleur montage",
+        "nameR": "Meilleur montage",
         "original": "FILM EDITING",
         "emote": "&#128252",
         "color1": "#9AEBF6",
@@ -137,6 +151,7 @@
     },
     {
         "name": "Meilleur film international",
+        "nameR": "Meilleur film int...",
         "original": "INTERNATIONAL FEATURE FILM",
         "original2": "FOREIGN LANGUAGE FILM",
         "emote": "&#128172",
@@ -146,6 +161,7 @@
     },
     {
         "name": "Meilleurs maquillages et coiffures",
+        "nameR": "Meilleurs maqu...",
         "original": "MAKEUP AND HAIRSTYLING",
         "original2": "MAKEUP",
         "emote": "&#128132",
@@ -155,6 +171,7 @@
     },
     {
         "name": "Meilleure musique de film",
+        "nameR": "Meilleure musique...",
         "original": "MUSIC (Original Score)",
         "original2": "MUSIC (Scoring)",
         "original3": "MUSIC (Music Score of a Dramatic Picture)",
@@ -166,6 +183,7 @@
     },
     {
         "name": "Meilleure chanson originale",
+        "nameR": "Meilleure chanson...",
         "original": "MUSIC (Original Song)",
         "original2": "MUSIC (Song)",
         "original3": "MUSIC (Scoring of a Musical Picture)",
@@ -176,6 +194,7 @@
     },
     {
         "name": "Meilleurs décors",
+        "nameR": "Meilleurs décors",
         "original": "PRODUCTION DESIGN",
         "original2": "ART DIRECTION",
         "emote": "&#127794",
@@ -185,6 +204,7 @@
     },
     {
         "name": "Meilleure chorégraphie",
+        "nameR": "Meilleure choré...",
         "original": "DANCE DIRECTION",
         "emote": "&#128131",
         "color1": "#ADF97E",
@@ -193,6 +213,7 @@
     },
     {
         "name": "Meilleurs direction artistique",
+        "nameR": "Meilleurs direction...",
         "original": "ART DIRECTION",
         "original2": "ART DIRECTION (Black-and-White)",
         "original3": "ART DIRECTION (Color)",
@@ -203,6 +224,7 @@
     },
     {
         "name": "Meilleur court métrage (animation)",
+        "nameR": "Meilleur court ani...",
         "original": "SHORT FILM (Animated)",
         "original2": "SHORT SUBJECT (Cartoon)",
         "emote": "&#128393",
@@ -212,6 +234,7 @@
     },
     {
         "name": "Meilleur court métrage (prises de vues réelles)",
+        "nameR": "Meilleur court prises...",
         "original": "SHORT FILM (Live Action)",
         "original2": "SHORT SUBJECT (Comedy)",
         "original3": "SHORT SUBJECT (Novelty)",
@@ -222,6 +245,7 @@
     },
     {
         "name": "Meilleur son",
+        "nameR": "Meilleur son",
         "original": "SOUND",
         "original2": "SOUND RECORDING",
         "original3": "SOUND EFFECTS",
@@ -232,6 +256,7 @@
     },
     {
         "name": "Meilleurs effets visuels",
+        "nameR": "Meilleurs FX",
         "original": "VISUAL EFFECTS",
         "original2": "ENGINEERING EFFECTS",
         "original3": "SPECIAL EFFECTS",
@@ -242,13 +267,14 @@
     },
     {
         "name": "Meilleur scénario original",
+        "nameR": "Meilleur scénario o...",
         "original": "WRITING (Original Screenplay)",
         "original2": "WRITING (Original Story)",
         "original3": "WRITING",
         "original4": "WRITING (Screenplay)",
         "original5": "WRITING (Motion Picture Story)",
-        "original7": "WRITING (Story and Screenplay)",
-        "original8": "WRITING (Screenplay--Original)",
+        "original6": "WRITING (Story and Screenplay)",
+        "original7": "WRITING (Screenplay--Original)",
         "emote": "&#128196",
         "color1": "#C7AEE8",
         "color2": "#20212C",
@@ -256,6 +282,7 @@
     },
     {
         "name": "Meilleur scénario adapté",
+        "nameR": "Meilleur scénario a...",
         "original": "WRITING (Adapted Screenplay)",
         "original2": "WRITING (Adaptation)",
         "original3": "WRITING (Screenplay--Adapted)",
@@ -266,6 +293,7 @@
     },
     {
         "name": "Meilleur mixage son",
+        "nameR": "Meilleur mixage...",
         "original": "SOUND EFFECTS EDITING",
         "original2": "SOUND EDITING",
         "emote": "&#127911",
@@ -275,6 +303,7 @@
     },
     {
         "name": "Oscar d'honneur",
+        "nameR": "Oscar d'honneur",
         "original": "HONORARY AWARD", 
         "emote": "&#127756",
         "color1": "#E4BA67",
