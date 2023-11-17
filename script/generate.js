@@ -141,7 +141,7 @@ function Aff_annee(donnee, d, index, position){
     
         d3.select("#Annee")
             .style("display", "block")
-            .selectAll("div")
+            .selectAll(".infoAn")
             .remove();
     
         d3.select("#NomAn")
@@ -150,13 +150,6 @@ function Aff_annee(donnee, d, index, position){
         d3.select("#Annee")
             .append("div")
             .attr("class", "infoAn");
-    
-        d3.selectAll(".cate")
-            .remove();
-    
-        d3.select("#Annee")
-            .append("div")
-            .attr("class", "cate");
         
         GenCamembert(ListCatAnn);
     
@@ -193,7 +186,17 @@ function Aff_annee(donnee, d, index, position){
 
                     d3.select(`#Cat${i}`)
                         .append("p")
-                        .text(`${currentcat[y]["name"]} - ${currentcat[y]["film"]}`)
+                        .text(`${currentcat[y]["name"]} - ${currentcat[y]["film"]}`);
+
+                    if (ListCatAnn[i]["nameFR"] == "Meilleur Film") {
+
+                        d3.select("#imgAn")
+                            .style("background-image", `url(${currentcat[y]["lien_affiche"]})`);
+
+                    } else if (ListCatAnn[i]["nameFR"] == "Meilleur Acteur") {
+                        d3.select("#imgAn")
+                            .style("background-image", `url(${currentcat[y]["lien_portrait"]})`);
+                    }
 
                 }
             }

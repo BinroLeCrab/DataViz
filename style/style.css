@@ -244,3 +244,11 @@ h2 {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+#imgAn {
+    height: 40vw;
+    width: 30vw;
+    background-image: url(../asset/OscarLog.svg);
+    background-size: cover;
+    background-position: center;
+}
