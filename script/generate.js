@@ -95,7 +95,7 @@ function affiche_decenie() {
 
     function Aff_infoBulle(data, d, index, pointer){
 
-        let coo = [[30,18], [4,28], [2,35], [2,42], [2,50], [2,58], [2,65], [2,39], [2,32], [2,25], [25,15]]; // =>7 => right
+        let coo = [[30,18], [4,28], [2,35], [2,42], [2,50], [2,58], [2,45], [2,39], [2,32], [2,25], [25,15]]; // =>7 => right
 
         let liste = d.list;
         console.log(data);
@@ -107,19 +107,12 @@ function affiche_decenie() {
 
         d3.select("#info-Bulle")
           .style("display", "block")
-          .style("top",`${coo[index][0]}vh`)
           .style("left",`unset`)
           .style("right",`unset`)
           .selectAll("h3")
           .text(d.year);
         
-          if (index >= 7) {
-            d3.select("#info-Bulle")
-                .style("right",`${coo[index][1]}vw`);
-          } else {
-            d3.select("#info-Bulle")
-                .style("left",`${coo[index][1]}vw`);
-          };
+          
 
         // d3.select("#info-Bulle")
         //   .style("display", "block")
@@ -137,7 +130,7 @@ function affiche_decenie() {
 
           for (let i = 0; i < liste.length; i++) {
 
-              d3.select("#info-Bulle")
+              d3.select(".infoCrop")
                 .append("div")
                 .attr("class", "AnnDec")
                 .attr("id", `Ann${i}`);
@@ -157,6 +150,45 @@ function affiche_decenie() {
                 .attr("class", "bold violetTxt AnnCount")
                 .text(`${liste[i]['count']} nominations`);
           }
+
+          if (index >= 6) {
+
+            gsap.to("#info-Bulle", {
+              duration : 0.3,
+              top : `${coo[index][0]}vh`,
+              right : `${coo[index][1]}vw`,
+              ease: "expo.out"
+            })
+
+            // d3.select("#info-Bulle")
+            //     .style("right",`${coo[index][1]}vw`);
+          } else {
+
+            gsap.to("#info-Bulle", {
+              duration : 0.3,
+              top : `${coo[index][0]}vh`,
+              left : `${coo[index][1]}vw`,
+              ease: "expo.out"
+            })
+
+            // d3.select("#info-Bulle")
+            //     .style("left",`${coo[index][1]}vw`);
+          };
+
+          gsap.from("#info-Bulle", {
+            duration : 0.3,
+            transform : "scale(0)",
+            opacity: 0,
+            ease: "expo.out"
+          })
+
+          gsap.from(".barAnn", {
+            duration : 0.15,
+            width : "0px",
+            stagger: 0.1
+          })
+
+          
 
           d3.selectAll(".AnnDec")
               .join(liste)

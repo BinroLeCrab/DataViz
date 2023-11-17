@@ -1,7 +1,7 @@
 
 let Btn = document.getElementById("enter");
 
-const tl =gsap.timeline();
+const tl = gsap.timeline();
 
 Btn.addEventListener("mouseenter", function(){
 

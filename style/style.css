@@ -15,6 +15,7 @@ main {
     background-color: var(--Fond2);
     border: var(--Glass);
     border-radius: var(--Rad1);
+    backdrop-filter: var(--Blur1);
     height: 92vh;
     margin: 4vh;
     display: none;
@@ -168,10 +169,12 @@ h2 {
     position: absolute;
     width: fit-content;
     top: 20px;
-    background-color: var(--Noir1);
+    background-color: var(--Fond1);
+    backdrop-filter: var(--Blur1);
     padding: 0px 30px 25px;
     border-radius: var(--Rad3);
     border: var(--Glass);
+    opacity: 1;
 }
 
 .infoHeader {
@@ -179,6 +182,24 @@ h2 {
     grid-template-columns: 40px 1fr 40px;
     align-items: center;
     margin: 0px -20px;
+}
+
+.infoCrop {
+    height: fit-content;
+    max-height: 60vh;
+    overflow-y: scroll;
+    padding-right: 5px;
+}
+
+.infoCrop::-webkit-scrollbar {
+    width: 5px;
+    height: 10px;
+    background-color: #ffffff00; /* or add it to the track */
+}
+
+  
+.infoCrop::-webkit-scrollbar-thumb {
+    background: var(--Contour);
 }
 
 .AnnDec {
