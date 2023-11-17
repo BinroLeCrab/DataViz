@@ -152,27 +152,25 @@ function affiche_decenie() {
           }
 
           if (index >= 6) {
+            d3.select("#info-Bulle")
+                .style("right",`${coo[index][1]}vw`);
 
-            gsap.to("#info-Bulle", {
+            gsap.from("#info-Bulle", {
               duration : 0.3,
               top : `${coo[index][0]}vh`,
-              right : `${coo[index][1]}vw`,
+              right : `${coo[index][1]-30}vw`,
               ease: "expo.out"
             })
-
-            // d3.select("#info-Bulle")
-            //     .style("right",`${coo[index][1]}vw`);
           } else {
+            d3.select("#info-Bulle")
+                .style("left",`${coo[index][1]}vw`);
 
-            gsap.to("#info-Bulle", {
+            gsap.from("#info-Bulle", {
               duration : 0.3,
               top : `${coo[index][0]}vh`,
-              left : `${coo[index][1]}vw`,
+              left : `${coo[index][1]-30}vw`,
               ease: "expo.out"
             })
-
-            // d3.select("#info-Bulle")
-            //     .style("left",`${coo[index][1]}vw`);
           };
 
           gsap.from("#info-Bulle", {
