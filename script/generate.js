@@ -13,13 +13,48 @@ function affiche_accueil() {
   btn.addEventListener("click", affiche_decenie, false);
 }
 
-function Aff_annee(data, d){
+
+function Aff_annee(donnee, d){
+
+  function CatAnn(donneeAnn, donneCat){
+
+    let ListCatAnn = {};
+
+    for (let i = 0; i < donneeAnn.length; i++) {
+
+      for (let y = 0; y < donneCat.length; y++) {
+        
+        if ((donneeAnn[i]["name"] == donneCat[y]["original"]) || ( typeof donneCat[y]["original2"] !== 'undefined' && (donneeAnn[i]["name"] == donneCat[y]["original2"])) || ( typeof donneCat[y]["original3"] !== 'undefined' && (donneeAnn[i]["name"] == donneCat[y]["original3"]))) {
+            
+          donneeAnn[i]["emote"] = donneCat[y]["emote"];
+          donneeAnn[i]["color1"] = donneCat[y]["color1"];
+          donneeAnn[i]["color2"] = donneCat[y]["color2"];
+          donneeAnn[i]["gradient"] = donneCat[y]["gradient"];
+          donneeAnn[i]["nameFR"] = donneCat[y]["name"];
+
+        }
+        
+      }
+      
+    }
+
+    ListCatAnn = donneeAnn;
+
+    return ListCatAnn;
+
+  }
+
+  d3.json("./src/categorie.json").then(function(data) {
     console.log(d);
     console.log(d.year);
 
     let cat = d.category;
 
+    let ListCatAnn = CatAnn(cat,data);
+
     console.log(cat);
+    console.log("-----");
+    console.log(ListCatAnn);
 
     d3.select("#info-Bulle")
         .style("display", "none")
@@ -46,13 +81,22 @@ function Aff_annee(data, d){
         .append("div")
         .attr("class", "cate");
 
-      for (let i = 0; i < cat.length; i++) {
+      for (let i = 0; i < ListCatAnn.length; i++) {
 
-          let currentcat = cat[i]["nomine"];
+          let currentcat = ListCatAnn[i]["nomine"];
 
-          d3.select(".infoAn")
-              .append("p")
-              .text(cat[i]["name"]);
+          if (typeof ListCatAnn[i]["nameFR"] !== 'undefined') {
+
+              d3.select(".infoAn")
+                  .append("p")
+                  .html(`${ListCatAnn[i]["emote"]}; ${ListCatAnn[i]["nameFR"]}`);
+                  // .text(ListCatAnn[i]["name"]);
+          
+          } else {
+              d3.select(".infoAn")
+                    .append("p")
+                    .text(ListCatAnn[i]["name"]);
+          }
 
           console.log(currentcat);
 
@@ -72,8 +116,6 @@ function Aff_annee(data, d){
               .text("------");
       }
 
-      d3.json("./src/categorie.json").then(function(data) {
-
         console.log(data)
 
           let tabcat = data;
@@ -83,7 +125,7 @@ function Aff_annee(data, d){
               .data(tabcat)
               .join("p")
               .html(d => `${d.emote}; ${d.name}`);
-      });
+    });
     
     document.getElementById("back").addEventListener("click", affiche_decenie, false);
 

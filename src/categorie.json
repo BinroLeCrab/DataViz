@@ -10,8 +10,17 @@
         "color1": "#5C5C5C"
     },
     {
+        "name": "Autres Catégories",
+        "emote": "&#128193",
+        "color1": "#A4B3C5",
+        "color2": "#1C2128",
+        "gradient": "linear-gradient(180deg, #1C212800 0%, #1C2128 100%)"
+    },
+    {
         "name": "Meilleur Film",
         "original": "BEST PICTURE",
+        "original2": "OUTSTANDING PICTURE",
+        "original3": "OUTSTANDING PRODUCTION",
         "emote": "&#127942",
         "color1": "#798EFE",
         "color2": "#181E2E",
@@ -20,6 +29,7 @@
     {
         "name": "Meilleur Acteur",
         "original": "ACTOR IN A LEADING ROLE",
+        "original2": "ACTOR",
         "emote": "&#129333",
         "color1": "#1B81F8",
         "color2": "#0E1C2E",
@@ -36,6 +46,7 @@
     {
         "name": "Meilleure Actrice",
         "original": "ACTRESS IN A LEADING ROLE",
+        "original2": "ACTRESS",
         "emote": "&#129333",
         "color1": "#E2345E",
         "color2": "#22151E",
@@ -76,6 +87,16 @@
     {
         "name": "Meilleur Réalisateur",
         "original": "DIRECTING",
+        "original2": "DIRECTING (Comedy Picture)",
+        "original3": "DIRECTING (Dramatic Picture)",
+        "emote": "&#129506",
+        "color1": "#F97E7E",
+        "color2": "#251C21",
+        "gradient": "linear-gradient(180deg, #251C2100 0%, #251C21 100%)"
+    },
+    {
+        "name": "Meilleur Réalisateur Assistant",
+        "original": "ASSISTANT DIRECTOR",
         "emote": "&#129506",
         "color1": "#F97E7E",
         "color2": "#251C21",
@@ -84,6 +105,7 @@
     {
         "name": "Meilleur film documentaire",
         "original": "DOCUMENTARY (Feature)",
+        "original2": "DOCUMENTARY FEATURE FILM",
         "emote": "&#127757",
         "color1": "#E8F97E",
         "color2": "#232821",
@@ -92,6 +114,7 @@
     {
         "name": "Meilleur court métrage (documentaire)",
         "original": "DOCUMENTARY (Short Subject)",
+        "original2": "DOCUMENTARY SHORT FILM",
         "emote": "&#127811",
         "color1": "#FE9636",
         "color2": "#251E1A",
@@ -108,6 +131,7 @@
     {
         "name": "Meilleur film international",
         "original": "INTERNATIONAL FEATURE FILM",
+        "original2": "FOREIGN LANGUAGE FILM",
         "emote": "&#128172",
         "color1": "#FFDCCE",
         "color2": "#252529",
@@ -124,6 +148,7 @@
     {
         "name": "Meilleure musique de film",
         "original": "MUSIC (Original Score)",
+        "original2": "MUSIC (Scoring)",
         "emote": "&#127926",
         "color1": "#BE958C",
         "color2": "#1F1E23",
@@ -132,6 +157,7 @@
     {
         "name": "Meilleure chanson originale",
         "original": "MUSIC (Original Song)",
+        "original2": "MUSIC (Song)",
         "emote": "&#128191",
         "color1": "#AEBE8C",
         "color2": "#1D2223",
@@ -140,14 +166,32 @@
     {
         "name": "Meilleurs décors",
         "original": "PRODUCTION DESIGN",
+        "original2": "ART DIRECTION",
         "emote": "&#127794",
         "color1": "#B1E543",
         "color2": "#1D261B",
         "gradient": "linear-gradient(180deg, #1D261B00 0%, #1D261B 100%)"
     },
     {
+        "name": "Meilleure chorégraphie",
+        "original": "",
+        "emote": "&#128131",
+        "color1": "#ADF97E",
+        "color2": "#1D2821",
+        "gradient": "linear-gradient(180deg, #1D282100 0%, #1D2821 100%)"
+    },
+    {
+        "name": "Meilleurs direction artistique",
+        "original": "ART DIRECTION",
+        "emote": "&#9925",
+        "color1": "#F04770x",
+        "color2": "#241620",
+        "gradient": "linear-gradient(180deg, #24162000 0%, #241620 100%)"
+    },
+    {
         "name": "Meilleur court métrage (animation)",
         "original": "SHORT FILM (Animated)",
+        "original2": "SHORT SUBJECT (Cartoon)",
         "emote": "&#128393",
         "color1": "#E5DFD2",
         "color2": "#23262A",
@@ -156,6 +200,8 @@
     {
         "name": "Meilleur court métrage (prises de vues réelles)",
         "original": "SHORT FILM (Live Action)",
+        "original2": "SHORT SUBJECT (Comedy)",
+        "original3": "SHORT SUBJECT (Novelty)",
         "emote": "&#127909",
         "color1": "#7871CC",
         "color2": "#181B29",
@@ -164,6 +210,7 @@
     {
         "name": "Meilleur son",
         "original": "SOUND",
+        "original2": "SOUND RECORDING",
         "emote": "&#128266",
         "color1": "#71CCC7",
         "color2": "#172429",
@@ -172,6 +219,7 @@
     {
         "name": "Meilleurs effets visuels",
         "original": "VISUAL EFFECTS",
+        "original2": "ENGINEERING EFFECTS",
         "emote": "&#128165",
         "color1": "#CCAD71",
         "color2": "#202120",
@@ -180,6 +228,8 @@
     {
         "name": "Meilleur scénario original",
         "original": "WRITING (Original Screenplay)",
+        "original2": "WRITING (Original Story)",
+        "original3": "WRITING",
         "emote": "&#128196",
         "color1": "#C7AEE8",
         "color2": "#20212C",
@@ -188,6 +238,7 @@
     {
         "name": "Meilleur scénario adapté",
         "original": "WRITING (Adapted Screenplay)",
+        "original2": "WRITING (Adaptation)",
         "emote": "&#128218",
         "color1": "#AEE8BE",
         "color2": "#1D2728",
