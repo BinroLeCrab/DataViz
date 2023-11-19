@@ -1,43 +1,41 @@
+//chargement de l'acceuil à l'ouverture
 window.addEventListener("load", affiche_accueil, false);
 
 // console.log('AA');
 
+//fonction accueil
 function affiche_accueil() {
 
-    d3.select("#Decennie")
+    d3.select("#Decennie")  //On masque la section décennie
     .style("display", "none");
 
-    let btn = document.getElementById("enter");
-    btn.addEventListener("click", affiche_decenie, false);
+    let btn = document.getElementById("enter"); //selection btn entrer
+    btn.addEventListener("click", affiche_decenie, false); //au click on passe sur les décénie
 
 }
 
-// function MoreAndLess(data, pos, param) {
+// function MoreAndLess(data, pos, param) { //fction fail pour changer d'année
 
-//     let indexDec = 0;
-//     let indexAn = 0;
-//     let position = [];
+//     let indexDec = 0; //décla de l'indice de la décennie
+//     let indexAn = 0;  //décla de l'indice de l'année
+//     let position = []; //décla de la liste position
 
-//     if (param == 1){
-
-//         //année +1
+//     if (param == 1){ //si année + 1
         
-//         indexDec = pos[0];
-//         indexAn = pos[1]+1;
+//         indexDec = pos[0];  //def id Decennie en fonction de la position de l'année actuelle
+//         indexAn = pos[1]+1; //def id année en fonction de la position de l'année actuelle
 
-//         if (indexAn == data[indexDec].list.length){
-//             indexDec = indexDec + 1;
-//             indexAn = 0;
+//         if (indexAn == data[indexDec].list.length){  //si on change de décennie
+//             indexDec = indexDec + 1; // + 1 à la décennie
+//             indexAn = 0; //On revient à zéro
 //         }
         
-//         position[0] = indexDec;
+//         position[0] = indexDec;  //reboot de la position
         
-//         console.log(data[indexDec].list[indexAn]);
-//         Aff_annee(data, data[indexDec].list[indexAn], indexAn, position );
+//         console.log(data[indexDec].list[indexAn]);  //débogage
+//         Aff_annee(data, data[indexDec].list[indexAn], indexAn, position );  //appel de l'année avec les nouveau param pour la nouvelle année
         
-//     } else if (param == 0) {
-        
-//         //année -1
+//     } else if (param == 0) { //la même chose que pour le if mais pour année -1
         
 //         indexDec = pos[0];
 //         indexAn = pos[1]-1;
@@ -55,18 +53,20 @@ function affiche_accueil() {
 //     }    
 // }
 
-function Aff_annee(donnee, d, index, position){
+// function affichage de l'année
+function Aff_annee(donnee, d, index, position){ //donnee = les data complètes, d = les données de l'année, index = index de l'annnée dans sa décénnie, position = la position de la décennie dans les data
 
-    function CatAnn(donneeAnn, donneCat){
+    function CatAnn(donneeAnn, donneCat){ // fct de groupement par catégorie
 
-        console.log(donneeAnn);
+        console.log(donneeAnn); //débogage
   
-        let ListCatAnn = {};
-        let idAutre = donneeAnn.length;
-        let Autre = {}
-        let idA = 0;
+        let ListCatAnn = {};  //Def de la liste des caté de l'année à retrouner
+        let idAutre = donneeAnn.length; // def de l'id où mettre ma catégorie autre
+        let Autre = {}; // def du tableau de la catégroie autre
+        let idA = 0; // def du compteur pour l'id des nomination à mettre dans autre
 
-        // donneeAnn[idAutre] = {};
+        //définition du tableau autres
+        // donneeAnn[idAutre] = {}; 
         Autre["nameFR"] = "Autres Catégories";
         Autre["nameR"] = "Autres Catégories";
         Autre["emote"] = "&#128193";
@@ -76,12 +76,14 @@ function Aff_annee(donnee, d, index, position){
         Autre["count"] = 0;
         Autre["nomine"] = [];
   
-        for (let i = 0; i < idAutre; i++) {
+        for (let i = 0; i < donneeAnn.length; i++) { //parcours des donnée de l'année
   
-            for (let y = 0; y < donneCat.length; y++) {
+            for (let y = 0; y < donneCat.length; y++) { // parcours des données du fichier catégories
                 
+                //pour chaque cétgorie de l'année on regarde si elle correspond à une catégorie définie 
                 if ((donneeAnn[i]["name"] == donneCat[y]["original"]) || ( typeof donneCat[y]["original2"] !== 'undefined' && (donneeAnn[i]["name"] == donneCat[y]["original2"])) || ( typeof donneCat[y]["original3"] !== 'undefined' && (donneeAnn[i]["name"] == donneCat[y]["original3"]))   || ( typeof donneCat[y]["original4"] !== 'undefined' && (donneeAnn[i]["name"] == donneCat[y]["original4"])) || ( typeof donneCat[y]["original5"] !== 'undefined' && (donneeAnn[i]["name"] == donneCat[y]["original5"])) || ( typeof donneCat[y]["original6"] !== 'undefined' && (donneeAnn[i]["name"] == donneCat[y]["original6"])) || ( typeof donneCat[y]["original7"] !== 'undefined' && (donneeAnn[i]["name"] == donneCat[y]["original7"]))) {
                     
+                    // on set dons tout ses paramaètre
                     donneeAnn[i]["emote"] = donneCat[y]["emote"];
                     donneeAnn[i]["color1"] = donneCat[y]["color1"];
                     donneeAnn[i]["color2"] = donneCat[y]["color2"];
@@ -89,7 +91,8 @@ function Aff_annee(donnee, d, index, position){
                     donneeAnn[i]["nameFR"] = donneCat[y]["name"];
                     donneeAnn[i]["nameR"] = donneCat[y]["nameR"];
                     
-                } // else {
+                } // else { // sinon on range ses nomination dans autres
+
                 //     // for (let j = 0; j < donneeAnn[i]["nomine"].length; j++) {
 
                 //     //     Autre["nomine"][idA] = donneeAnn[i]["nomine"][j];
@@ -106,55 +109,65 @@ function Aff_annee(donnee, d, index, position){
         
         }
   
-        ListCatAnn = donneeAnn;
+        ListCatAnn = donneeAnn; // on defini la list à envoyer en fonction des modification effectuer
 
-        console.log(Autre);
+        console.log(Autre); //debogage
     
-        return ListCatAnn;
+        return ListCatAnn; //on la renvoie
     
     }
   
+    //fonction de génération du camembret
     function GenCamembert(data){
 
+        //on récupère le svg
         const cam = d3.select("#cam");
         
+        //on le nettoie
         cam.selectAll("g").remove();
 
+        //on défini les différente var de auteur, largeur etc... puis un rajoute un groupe dans lequel se trouvera le cam
         const width = 200;
         const height = 200;
         const radius = Math.min(width,height) / 2;
         const gPie = cam.append("g") .attr("transform", `translate(0,0)`);
 
+        // on définie que les valeur à utilisé pour la génération sont celle de la clé "count"
         const pie = d3.pie()
             .sort(null)
             .value(d => d.count);
         
+        //on défini le radius de l'arc
         const arc = d3.arc()
             .innerRadius(0)
             .outerRadius(radius - 10);
 
+        //et celui où seront présent les labels
         const tag = d3.arc()
             .innerRadius(0)
             .outerRadius(radius * 2);
   
+        //on créer des objet arc pour chaque donnée
         const arcs = gPie.selectAll(".arc")
             .data(pie(data))
             .enter().append("g")
             .attr("class", "arc");
   
+        // pour chaque objet on créer un chemin qui correspond a la partie ducam qui lui corrspond
         arcs.append("path")
             .attr("d", arc)
-            .attr("fill", (d, i) => data[i].color1);
+            .attr("fill", (d, i) => data[i].color1); // on lui donne la couleur 1 de la ligne de donnée corrspondante 
   
+        // pour chaque arc on rajoute son label
         arcs.append("text")
-            .attr("transform", d => `translate(${tag.centroid(d)})`)
+            .attr("transform", d => `translate(${tag.centroid(d)})`) //on le centre entre les radius défini
             .attr("dy", "0.35em")
-            .html((d,i) => `${data[i].emote}; ${data[i].nameR}`)
+            .html((d,i) => `${data[i].emote}; ${data[i].nameR}`) // on rajoute son contenu
             .attr("class", "tag")
             .style("text-anchor", "middle")
-            .style("opacity", "0");
+            .style("opacity", "0"); // on défini son opacité à 0 pour qu'il apparaissent uniquement au hover
         
-        arcs.on("mouseenter", function(){ //this = objeft touché
+        arcs.on("mouseenter", function(){ //intéraction au hover (l'objet touché reste tels quel et affiche son label, les autres passe en oppacité 0.5)
 
             arcs.transition()
                 .style("opacity", 0.5);
@@ -168,7 +181,7 @@ function Aff_annee(donnee, d, index, position){
             
         });
 
-        arcs.on("mouseleave", function(){ //this = objeft touché
+        arcs.on("mouseleave", function(){ //remise à zéro des intéraction au hover à la sortie de l'objet touché
 
             arcs.transition()
                 .style("opacity", 1);
@@ -180,9 +193,9 @@ function Aff_annee(donnee, d, index, position){
             
         });
 
-
     }
 
+    
     d3.json("./src/categorie.json").then(function(data) {
         // console.log(d);
         console.log(d.year);
