@@ -12,13 +12,71 @@ function affiche_accueil() {
 
 }
 
+// function MoreAndLess(data, pos, param) {
+
+//     let indexDec = 0;
+//     let indexAn = 0;
+//     let position = [];
+
+//     if (param == 1){
+
+//         //année +1
+        
+//         indexDec = pos[0];
+//         indexAn = pos[1]+1;
+
+//         if (indexAn == data[indexDec].list.length){
+//             indexDec = indexDec + 1;
+//             indexAn = 0;
+//         }
+        
+//         position[0] = indexDec;
+        
+//         console.log(data[indexDec].list[indexAn]);
+//         Aff_annee(data, data[indexDec].list[indexAn], indexAn, position );
+        
+//     } else if (param == 0) {
+        
+//         //année -1
+        
+//         indexDec = pos[0];
+//         indexAn = pos[1]-1;
+        
+//         if (indexAn == -1){
+//             indexDec = indexDec - 1;
+//             indexAn = data[indexDec].list.length -1;
+//         }
+        
+//         position[0] = indexDec;
+        
+//         console.log(data[indexDec].list[indexAn]);
+//         Aff_annee(data, data[indexDec].list[indexAn], indexAn, position );
+
+//     }    
+// }
+
 function Aff_annee(donnee, d, index, position){
 
     function CatAnn(donneeAnn, donneCat){
+
+        console.log(donneeAnn);
   
         let ListCatAnn = {};
+        let idAutre = donneeAnn.length;
+        let Autre = {}
+        let idA = 0;
+
+        // donneeAnn[idAutre] = {};
+        Autre["nameFR"] = "Autres Catégories";
+        Autre["nameR"] = "Autres Catégories";
+        Autre["emote"] = "&#128193";
+        Autre["color1"] = "#A4B3C5";
+        Autre["color2"] = "#1C2128";
+        Autre["gradient"] = "linear-gradient(180deg, #1C212800 0%, #1C2128 100%)";
+        Autre["count"] = 0;
+        Autre["nomine"] = [];
   
-        for (let i = 0; i < donneeAnn.length; i++) {
+        for (let i = 0; i < idAutre; i++) {
   
             for (let y = 0; y < donneCat.length; y++) {
                 
@@ -31,13 +89,26 @@ function Aff_annee(donnee, d, index, position){
                     donneeAnn[i]["nameFR"] = donneCat[y]["name"];
                     donneeAnn[i]["nameR"] = donneCat[y]["nameR"];
                     
-                }
+                } // else {
+                //     // for (let j = 0; j < donneeAnn[i]["nomine"].length; j++) {
+
+                //     //     Autre["nomine"][idA] = donneeAnn[i]["nomine"][j];
+                //     //     Autre["count"] = Autre["count"] + donneeAnn[i]["count"];
+                //     //     idA++;
+                //     // }
+
+                //     Autre["nomine"][idA] = donneeAnn[i]["nomine"];
+                //     Autre["count"] = Autre["count"] + donneeAnn[i]["count"];
+                //     idA++;
+                // }
                 
             }
         
         }
   
         ListCatAnn = donneeAnn;
+
+        console.log(Autre);
     
         return ListCatAnn;
     
@@ -152,6 +223,24 @@ function Aff_annee(donnee, d, index, position){
             .attr("class", "infoAn");
         
         GenCamembert(ListCatAnn);
+
+        if (d.year == 2023) {
+            d3.select("#More")
+                .style("display", "none");
+        } else {
+            d3.select("#More")
+                .style("display", "block")
+                .text(d.year + 1);
+        }
+
+        if (d.year == 1928) {
+            d3.select("#Less")
+                .style("display", "none");
+        } else {
+            d3.select("#Less")
+                .style("display", "block")
+                .text(d.year - 1);
+        }
     
         for (let i = 0; i < ListCatAnn.length; i++) {
 
@@ -218,6 +307,10 @@ function Aff_annee(donnee, d, index, position){
         document.getElementById("back").addEventListener("click", affiche_decenie, false);
 
         setTimeout(() => {
+
+            // document.getElementById("More").addEventListener("click", MoreAndLess(donnee, pos, 1), false);
+            
+            // document.getElementById("Less").addEventListener("click", MoreAndLess(donnee, pos, 0), false);
 
             document.getElementById("More").addEventListener("click", () => {
 
