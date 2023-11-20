@@ -483,3 +483,18 @@ a {
     text-overflow: ellipsis;
 }
 
+
+/* Easter Egg */
+
+#Goat {
+    position: fixed;
+    /* top: 91vh; */
+    top: 110vh;
+    left: 97vw;
+    font-size: 1.2rem;
+    margin: 0px;
+}
+
+.noDeco {
+    text-decoration: none;
+}

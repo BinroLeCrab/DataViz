@@ -40,3 +40,40 @@ Btn.addEventListener("mouseleave", function(){
     })
 
 }, false);
+
+// Début Easter Egg
+
+let Eg = document.getElementById("EG");
+let c = 0;
+
+Eg.addEventListener("click", function(){
+    if (c == 0) {
+        c = 1;
+    } else {
+        c = 0;
+    }
+})
+
+Eg.addEventListener("mouseenter", function(){
+
+    gsap.to("#Goat", {
+        top: "92vh",
+        duration : 0.15,
+        ease: "bounce.out"
+    })
+
+});
+
+Eg.addEventListener("mouseleave", function(){
+
+    if (c==0) {
+        gsap.to("#Goat", {
+            top: "110vh",
+            duration : 0.15,
+            ease: "bounce.out"
+        })
+    }
+
+})
+
+// Fin Easter Egg
