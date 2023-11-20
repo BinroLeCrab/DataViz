@@ -34,8 +34,8 @@ box-sizing: border-box;
     --Brillance: drop-shadow(0px 0px 10px 0px #C294FC);
 
     /* Stroke  */
-    --Glass: 2px solid var(--Contour);
-    --Tag: 2px solid;
+    --Glass: 3px solid var(--Contour);
+    --Tag: 3px solid;
 
     /* Radius  */
     --Rad1: 30px;

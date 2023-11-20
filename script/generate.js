@@ -224,14 +224,14 @@ function Aff_annee(donnee, d, index, position){ //donnee = les data complètes, 
             .style("display", "none");
     
         d3.select("#Annee")
-            .style("display", "block")
+            .style("display", "grid")
             .selectAll(".infoAn")
             .remove();
     
-        d3.select("#NomAn")
+        d3.selectAll(".An")
             .text(d.year);
         
-        d3.select("#Annee")
+        d3.select("#BasAside")
             .append("div")
             .attr("class", "infoAn");
         
@@ -242,7 +242,8 @@ function Aff_annee(donnee, d, index, position){ //donnee = les data complètes, 
                 .style("display", "none");
         } else {
             d3.select("#More")
-                .style("display", "block")
+                .style("display", "flex")
+                .select("#MoreAn")
                 .text(d.year + 1);
         }
 
@@ -251,7 +252,8 @@ function Aff_annee(donnee, d, index, position){ //donnee = les data complètes, 
                 .style("display", "none");
         } else {
             d3.select("#Less")
-                .style("display", "block")
+                .style("display", "flex")
+                .select("#LessAn")
                 .text(d.year - 1);
         }
     
@@ -261,13 +263,20 @@ function Aff_annee(donnee, d, index, position){ //donnee = les data complètes, 
 
             if (typeof ListCatAnn[i]["nameFR"] !== 'undefined') {
 
-                d3.select(".infoAn")
-                    .append("div")
-                    .attr("id", `Cat${i}`)
-                    .attr("class", "Divcate")
-                    .append("p")
-                    .html(`${ListCatAnn[i]["emote"]}; ${ListCatAnn[i]["nameFR"]}`);
-                    // .text(ListCatAnn[i]["name"]);
+                if (ListCatAnn[i]["nameFR"] == "Meilleur Film") {
+                    
+                } else {
+                    d3.select(".infoAn")
+                        .append("div")
+                        .attr("id", `Cat${i}`)
+                        .attr("class", "Divcate")
+                        .append("p")
+                        .attr("class", "TagCate")
+                        .html(`${ListCatAnn[i]["emote"]}; ${ListCatAnn[i]["nameFR"]}`)
+                        .style("border", `solid 3px ${ListCatAnn[i]["color1"]}`)
+                        .style("color", ListCatAnn[i]["color1"]);
+                        // .text(ListCatAnn[i]["name"]);
+                }
             
             } else {
 
@@ -286,26 +295,44 @@ function Aff_annee(donnee, d, index, position){ //donnee = les data complètes, 
 
                 if (currentcat[y]['winner']== true) {
 
-                    d3.select(`#Cat${i}`)
-                        .append("p")
-                        .text(`${currentcat[y]["name"]} - ${currentcat[y]["film"]}`);
-
                     if (ListCatAnn[i]["nameFR"] == "Meilleur Film") {
 
                         d3.select("#imgAn")
+                            .style("background", `linear-gradient(180deg, #0D111700 0%, #0d1117cc 100%), linear-gradient(180deg, #0d111759 0%, #0d111759 100%), center / cover no-repeat url(${currentcat[y]["lien_affiche"]})`);
+                        d3.select("#imgBck")
                             .style("background-image", `url(${currentcat[y]["lien_affiche"]})`);
-
+                        d3.select("#FilmName")
+                            .text(currentcat[y]["film"]);
+                        
+                            
                     } else if (ListCatAnn[i]["nameFR"] == "Meilleur Acteur") {
+
                         d3.select("#imgAn")
+                            .style("background", `linear-gradient(180deg, #0D111700 0%, #0d1117cc 100%), linear-gradient(180deg, #0d111759 0%, #0d111759 100%), center / cover no-repeat url(${currentcat[y]["lien_portrait"]})`);
+                        d3.select("#imgBck")
                             .style("background-image", `url(${currentcat[y]["lien_portrait"]})`);
+
+                        d3.select(`#Cat${i}`)
+                            .append("p")
+                            .html(`<span class="bold">${currentcat[y]["name"]}</span> - ${currentcat[y]["film"]}`);
+
+                    } else if (ListCatAnn[i]["nameFR"] == "Oscar d'honneur") {
+
+                        d3.select(`#Cat${i}`)
+                            .append("p")
+                            .text(currentcat[y]["name"]);
+
+                    } else {
+
+                        d3.select(`#Cat${i}`)
+                            .append("p")
+                            .html(`<span class="bold">${currentcat[y]["name"]}</span> - ${currentcat[y]["film"]}`);
+
                     }
 
                 }
             }
 
-            d3.select(`#Cat${i}`)
-                .append("p")
-                .text("------");
         }
 
             // let tabcat = data;

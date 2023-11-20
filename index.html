@@ -114,14 +114,37 @@
 
                 </article>
                 <article id="Annee">
-                    <h2 id="NomAn"></h2>
-                    <button id="back" class = "Btn" type="button">Retour</button>
-                    <button id="Less" class = "" type="button">Année -1</button>
-                    <button id="More" class = "" type="button">Année +1</button>
-                    <svg id="cam" width="60vw" height="50vw" viewbox="-130, -130, 260, 260">
-
-                    </svg>
-                    <div id="imgAn"></div>
+                    <div id="backdiv">
+                        <button id="back" class = "bck" type="button">Retour</button>
+                    </div>
+                    <div id="Graph">
+                        <h1 id="NomAn" class="An">1900</h1>
+                        <svg id="cam" width="100%" height="100%" viewbox="-110, -110, 220, 220">
+                        </svg>
+                    </div>
+                    <div id="EnBasLa">
+                        <button id="Less" class = "BtnAn" type="button">
+                            <img src="asset/left.svg" alt=""/>
+                            <span id="LessAn">Année -1</span>
+                        </button>
+                        <h3 class="statAn"><span class="violetTxt">119 Nomination</span> Cette Année Dans <span class="violetTxt">23 Catégories</span></h3>
+                        <button id="More" class = "BtnAn" type="button">
+                            <span id="MoreAn">Année -1</span>
+                            <img src="asset/right.svg" alt=""/>
+                        </button>
+                    </div>
+                    <div id="AsideAn">
+                        <div id="imgBck"></div>
+                        <div id="Aside">
+                            <div id="imgAn">
+                                <p id="tagTop1">&#127942 Meilleur Film</p>
+                                <h3 id="FilmName"></h3>
+                            </div>
+                            <div id="BasAside">
+                                <h3>&#127807 Les Lauréats de <span class="An"></span></h3>
+                            </div>
+                        </div>
+                    </div>
                 </article>
             </section>
         </main>
