@@ -17,8 +17,8 @@ main {
     border-radius: var(--Rad1);
     -webkit-backdrop-filter: var(--Blur1);
             backdrop-filter: var(--Blur1);
-    height: 92vh;
-    margin: 4vh;
+    height: 90vh;
+    margin: 4vh 4vh 1vh 4vh;
     display: none;
 }
 
@@ -32,8 +32,8 @@ main {
     backdrop-filter: var(--Blur1);
     border: var(--Glass);
     border-radius: var(--Rad1);
-    height: 92vh;
-    margin: 4vh;
+    height: 90vh;
+    margin: 4vh 4vh 1vh 4vh;
     grid-template-areas: 
         "bck asd"
         "g asd"
@@ -72,7 +72,7 @@ main {
 
 #Graph {
     display: flex;
-    height: 74vh;
+    height: 72vh;
     width: 100%;
     margin: 0px auto;
     grid-area: g;
@@ -151,7 +151,7 @@ main {
 #AsideAn {
     grid-area: asd;
     width: 25vw;
-    height: 92vh;
+    height: 90vh;
     background-color: var(--Fond1);
     border-radius: var(--Rad1);
     border: var(--Glass);
@@ -182,7 +182,7 @@ main {
 
 #imgAn {
     display: flex;
-    height: 50vh;
+    height: 48vh;
     width: 100%;
     background: var(--Linear-Image), var(--Image), url(../asset/OscarLog.svg);
     background-size: cover;
@@ -211,7 +211,7 @@ main {
 #BasAside {
     padding: 10px;
     text-align: left;
-    height: 41vh;
+    height: 42vh;
     display: flex;
     flex-direction: column;
 }
@@ -269,6 +269,10 @@ h3 {
     font-weight: 700;
     font-size: 1.5rem;
     text-transform: capitalize;
+}
+
+a {
+    color: var(--Blanc);
 }
 
 .bold {
@@ -338,7 +342,7 @@ h3 {
 /* Page accueil */
 
 #Accueil {
-    height: 100vh;
+    height: 95vh;
     display: grid;
     flex-direction: column;
     align-content: center;
