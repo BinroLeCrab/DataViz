@@ -56,65 +56,56 @@ function affiche_accueil() {
 // function affichage de l'année
 function Aff_annee(donnee, d, index, position){ //donnee = les data complètes, d = les données de l'année, index = index de l'annnée dans sa décénnie, position = la position de la décennie dans les data
 
-    function CatAnn(donneeAnn, donneCat){ // fct de groupement par catégorie
+    function CatAnn(donneeAnn, donneCat) {
+        // Fonction de groupement par catégorie
+        console.log(donneeAnn); // Débogage
 
-        console.log(donneeAnn); //débogage
-  
-        let ListCatAnn = {};  //Def de la liste des caté de l'année à retrouner
-        let idAutre = donneeAnn.length; // def de l'id où mettre ma catégorie autre
-        let Autre = {}; // def du tableau de la catégroie autre
-        let idA = 0; // def du compteur pour l'id des nomination à mettre dans autre
+        let ListCatAnn = []; // Liste des catégories de l'année à retourner
+        let Autre = { // Définition du tableau de la catégorie autre
+            "nameFR": "Autres Catégories",
+            "nameR": "Autres Catégories",
+            "emote": "&#128193",
+            "color1": "#A4B3C5",
+            "color2": "#1C2128",
+            "gradient": "linear-gradient(180deg, #1C212800 0%, #1C2128 100%)",
+            "count": 0,
+            "nomine": []
+        };
 
-        //définition du tableau autres
-        // donneeAnn[idAutre] = {}; 
-        Autre["nameFR"] = "Autres Catégories";
-        Autre["nameR"] = "Autres Catégories";
-        Autre["emote"] = "&#128193";
-        Autre["color1"] = "#A4B3C5";
-        Autre["color2"] = "#1C2128";
-        Autre["gradient"] = "linear-gradient(180deg, #1C212800 0%, #1C2128 100%)";
-        Autre["count"] = 0;
-        Autre["nomine"] = [];
-  
-        for (let i = 0; i < donneeAnn.length; i++) { //parcours des donnée de l'année
-  
-            for (let y = 0; y < donneCat.length; y++) { // parcours des données du fichier catégories
-                
-                //pour chaque cétgorie de l'année on regarde si elle correspond à une catégorie définie 
+        for (let i = 0; i < donneeAnn.length; i++) { // Parcours des données de l'année
+            let categorieTrouvee = false; // Drapeau pour vérifier si la catégorie a été trouvée
+
+            for (let y = 0; y < donneCat.length; y++) { // Parcours des données du fichier catégories
+                // Pour chaque catégorie de l'année, vérifier la correspondance avec une catégorie définie
                 if ((donneeAnn[i]["name"] == donneCat[y]["original"]) || ( typeof donneCat[y]["original2"] !== 'undefined' && (donneeAnn[i]["name"] == donneCat[y]["original2"])) || ( typeof donneCat[y]["original3"] !== 'undefined' && (donneeAnn[i]["name"] == donneCat[y]["original3"]))   || ( typeof donneCat[y]["original4"] !== 'undefined' && (donneeAnn[i]["name"] == donneCat[y]["original4"])) || ( typeof donneCat[y]["original5"] !== 'undefined' && (donneeAnn[i]["name"] == donneCat[y]["original5"])) || ( typeof donneCat[y]["original6"] !== 'undefined' && (donneeAnn[i]["name"] == donneCat[y]["original6"])) || ( typeof donneCat[y]["original7"] !== 'undefined' && (donneeAnn[i]["name"] == donneCat[y]["original7"]))) {
-                    
-                    // on set dons tout ses paramaètre
+                    // Mise à jour des paramètres de donneeAnn[i]
                     donneeAnn[i]["emote"] = donneCat[y]["emote"];
                     donneeAnn[i]["color1"] = donneCat[y]["color1"];
                     donneeAnn[i]["color2"] = donneCat[y]["color2"];
                     donneeAnn[i]["gradient"] = donneCat[y]["gradient"];
                     donneeAnn[i]["nameFR"] = donneCat[y]["name"];
                     donneeAnn[i]["nameR"] = donneCat[y]["nameR"];
-                    
-                } // else { // sinon on range ses nomination dans autres
-
-                //     // for (let j = 0; j < donneeAnn[i]["nomine"].length; j++) {
-
-                //     //     Autre["nomine"][idA] = donneeAnn[i]["nomine"][j];
-                //     //     Autre["count"] = Autre["count"] + donneeAnn[i]["count"];
-                //     //     idA++;
-                //     // }
-
-                //     Autre["nomine"][idA] = donneeAnn[i]["nomine"];
-                //     Autre["count"] = Autre["count"] + donneeAnn[i]["count"];
-                //     idA++;
-                // }
-                
+                    categorieTrouvee = true;
+                    break;
+                }
             }
-        
-        }
-  
-        ListCatAnn = donneeAnn; // on defini la list à envoyer en fonction des modification effectuer
 
-        console.log(Autre); //debogage
-    
-        return ListCatAnn; //on la renvoie
-    
+            if (!categorieTrouvee) { // Si la catégorie ne correspond pas, ajout à "Autres"
+                Autre["nomine"].push(...donneeAnn[i]["nomine"]);
+                Autre["count"] += donneeAnn[i]["nomine"].length;
+            } else {
+                // Si la catégorie est reconnue, ajout à ListCatAnn
+                ListCatAnn.push(donneeAnn[i]);
+            }
+        }
+
+        // Ajout de la catégorie "Autres" à ListCatAnn si elle contient des nominés
+        if (Autre["count"] > 0) {
+            ListCatAnn.push(Autre);
+        }
+
+        console.log(Autre); // Débogage
+        return ListCatAnn; // Renvoie la liste modifiée
     }
   
     //fonction de génération du camembret
@@ -234,6 +225,12 @@ function Aff_annee(donnee, d, index, position){ //donnee = les data complètes, 
         d3.select("#BasAside")
             .append("div")
             .attr("class", "infoAn");
+
+        d3.select("#nbNomi")
+            .text(d.count);
+
+        d3.select("#nbCate")
+            .text(d.category.length);
         
         GenCamembert(ListCatAnn);
 
@@ -307,6 +304,13 @@ function Aff_annee(donnee, d, index, position){ //donnee = les data complètes, 
                             
                     } else if (ListCatAnn[i]["nameFR"] == "Meilleur Acteur") {
 
+                        if (currentcat[y]["lien_portrait"] == "Erreur de requête pour le portrait") {
+                            d3.select("#imgAn")
+                                .style("background", `linear-gradient(180deg, #0D111700 0%, #0d1117cc 100%), linear-gradient(180deg, #0d111759 0%, #0d111759 100%), center / cover no-repeat url(../asset/NotFound.png)`);
+                            d3.select("#imgBck")
+                                .style("background-image", `url(../asset/NotFound.png)`);
+                        }
+
                         d3.select("#imgAn")
                             .style("background", `linear-gradient(180deg, #0D111700 0%, #0d1117cc 100%), linear-gradient(180deg, #0d111759 0%, #0d111759 100%), center / cover no-repeat url(${currentcat[y]["lien_portrait"]})`);
                         d3.select("#imgBck")
@@ -342,6 +346,13 @@ function Aff_annee(donnee, d, index, position){ //donnee = les data complètes, 
             //     .data(tabcat)
             //     .join("p")
             //     .html(d => `${d.emote}; ${d.name}`);
+
+            
+        gsap.from(".Divcate", {
+            duration : 0.15,
+            opacity : 0,
+            stagger: 0.1
+        })
 
             
         document.getElementById("back").addEventListener("click", affiche_decenie, false);

@@ -90,6 +90,7 @@ main {
     backdrop-filter: var(--Blur1);
     border-radius: var(--Rad1);
     border: var(--Glass);
+    z-index: 105;
 }
 
 #EnBasLa {
@@ -97,9 +98,33 @@ main {
     display: grid;
     height: 100%;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     grid-template-columns: 100px 1fr 100px;
     padding: 0px 20px 20px 20px;
+    grid-template-areas: "L h M";
+}
+
+#EnBasLa > h3 {
+    grid-area: h;
+    margin: auto;
+}
+
+#nbNomi {
+    position: relative;
+    top: 0px;
+}
+
+#nbCate {
+    position: relative;
+    top: 0px;
+}
+
+#More {
+    grid-area: M;
+}
+
+#Less {
+    grid-area: L;
 }
 
 .BtnAn {
@@ -196,11 +221,11 @@ main {
 }
 
 
-.DivCate {
-    margin: 20px 0px;
+.Divcate {
+    margin: 25px 0px;
 }
 
-.DivCate p {
+.Divcate p {
     margin: 10px 0px 0px 0px;
 }
 
