@@ -1,288 +1,4 @@
-body {
-    font-family: 'Inter', sans-serif;
-    color: var(--Blanc);
-    background-color: var(--Noir1);
-    text-align: center;
-    margin: 0;
-}
-
-main {
-    position: relative;
-    z-index: 100;
-}
-
-#Decennie {
-    background-color: var(--Fond2);
-    border: var(--Glass);
-    border-radius: var(--Rad1);
-    -webkit-backdrop-filter: var(--Blur1);
-            backdrop-filter: var(--Blur1);
-    height: 90vh;
-    margin: 4vh 4vh 1vh 4vh;
-    display: none;
-}
-
-#Annee {
-    display: none;
-    grid-template-columns: 1fr 25vw;
-    grid-template-rows: 50px 1fr 80px;
-    align-content: center;
-    align-items: center;
-    background-color: var(--Fond2);
-    backdrop-filter: var(--Blur1);
-    border: var(--Glass);
-    border-radius: var(--Rad1);
-    height: 90vh;
-    margin: 4vh 4vh 1vh 4vh;
-    grid-template-areas: 
-        "bck asd"
-        "g asd"
-        "bas asd";
-    overflow: hidden;
-}
-
-.bck {
-    padding: 8px 10px;
-    border-radius: var(--Rad1);
-    border: solid 3px var(--Violet2);
-    background-color: #753FC700;
-    color: var(--Violet2);
-    font-family: 'Inter', sans-serif;
-    font-size: 1rem;
-    width: fit-content;
-    height: fit-content;
-    cursor: pointer;
-    box-shadow: 0px 0px 0px 0px var(--Violet2);
-    transition: 0.3s;
-}
-
-.bck:hover {
-    background-color: #753FC7;
-    border: solid 3px var(--Violet1);
-    color: var(--Blanc);
-    box-shadow: 0px 0px 10px 0px var(--Violet2);
-}
-
-#backdiv {    
-    grid-area: bck;
-    padding: 20px 0px 0px 20px;
-    text-align: left;
-    height: 100%;
-}
-
-#Graph {
-    display: flex;
-    height: 72vh;
-    width: 100%;
-    margin: 0px auto;
-    grid-area: g;
-    flex-direction: row;
-    align-content: center;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-#NomAn {
-    position: absolute;
-    padding: 15px;
-    background-color: var(--Annee);
-    backdrop-filter: var(--Blur1);
-    border-radius: var(--Rad1);
-    border: var(--Glass);
-    z-index: 105;
-}
-
-#EnBasLa {
-    grid-area: bas;
-    display: grid;
-    height: 100%;
-    justify-content: center;
-    align-items: start;
-    grid-template-columns: 100px 1fr 100px;
-    padding: 0px 20px 20px 20px;
-    grid-template-areas: "L h M";
-}
-
-#EnBasLa > h3 {
-    grid-area: h;
-    margin: auto;
-}
-
-#nbNomi {
-    position: relative;
-    top: 0px;
-}
-
-#nbCate {
-    position: relative;
-    top: 0px;
-}
-
-#More {
-    grid-area: M;
-}
-
-#Less {
-    grid-area: L;
-}
-
-.BtnAn {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 15px;
-    border-radius: var(--Rad1);
-    background-color: var(--Noir1);
-    border: var(--Glass);
-    color: var(--Blanc);
-    font-family: 'Inter', sans-serif;
-    font-size: 1rem;
-    font-weight: 700;
-    cursor: pointer;
-    box-shadow: 0px 0px 0px 0px var(--Blanc);
-    transition: 0.3s;
-}
-
-.BtnAn:hover {
-    box-shadow: 0px 0px 10px 0px var(--Blanc);
-}
-
-#AsideAn {
-    grid-area: asd;
-    width: 25vw;
-    height: 90vh;
-    background-color: var(--Fond1);
-    border-radius: var(--Rad1);
-    border: var(--Glass);
-    overflow: hidden;
-    margin-left: 2px;
-}
-
-#imgBck {
-    height: 100%;
-    width: 100%;
-    position: relative;
-    background-size: cover;
-    background-position: center;
-    z-index: 101;
-}
-
-#Aside {
-    background-color: var(--Fond1);
-    backdrop-filter: var(--Blur2);
-    height: 100%;
-    width: 100%;
-    top: -100%;
-    border-radius: var(--Rad1);
-    position: relative;
-    z-index: 102;
-    overflow: hidden;
-}
-
-#imgAn {
-    display: flex;
-    height: 48vh;
-    width: 100%;
-    background: var(--Linear-Image), var(--Image), url(../asset/OscarLog.svg);
-    background-size: cover;
-    background-position: center;
-    flex-direction: column;
-    align-content: flex-start;
-    justify-content: flex-end;
-    text-align: left;
-    padding: 10px;
-    gap: 10px;
-}
-
-#imgAn > * {
-    margin: 0px;
-}
-
-#tagTop1 {
-    background-color: #798EFE;
-    padding: 8px 12px;
-    width: fit-content;
-    border-radius: var(--Rad1);
-    font-size: 0.75rem;
-    font-weight: 700;
-}
-
-#BasAside {
-    padding: 10px;
-    text-align: left;
-    height: 42vh;
-    display: flex;
-    flex-direction: column;
-}
-
-.infoAn {
-    overflow-y: scroll;
-}
-
-
-.Divcate {
-    margin: 25px 0px;
-}
-
-.Divcate p {
-    margin: 10px 0px 0px 0px;
-}
-
-.infoAn::-webkit-scrollbar {
-    width: 5px;
-    height: 10px;
-    background-color: #ffffff00; /* or add it to the track */
-}
-
-
-.infoAn::-webkit-scrollbar-thumb {
-    background: var(--Contour);
-}
-
-.TagCate {
-    padding: 8px 12px;
-    width: fit-content;
-    border-radius: var(--Rad1);
-    font-size: 0.75rem;
-    font-weight: 700;
-    margin: 0px;
-}
-
-#BasAside > * {
-    margin: 0px;
-}
-
-h1 {
-    font-weight: 900;
-    font-size: 4rem;
-    text-transform: uppercase;
-}
-
-h2 {
-    font-weight: 700;
-    font-size: 2rem;
-    text-transform: uppercase;
-}
-
-h3 {
-    font-weight: 700;
-    font-size: 1.5rem;
-    text-transform: capitalize;
-}
-
-a {
-    color: var(--Blanc);
-}
-
-.bold {
-    font-weight: 700;
-}
-
-.violetTxt {
-    color: var(--Violet2);
-}
-
+/* background */
 #bckg {
     position: fixed;
     height: 100vh;
@@ -393,9 +109,23 @@ a {
     margin: 0;
 }
 
+/* Page décennie */
+#Decennie {
+    background-color: var(--Fond2);
+    border: var(--Glass);
+    border-radius: var(--Rad1);
+    -webkit-backdrop-filter: var(--Blur1);
+            backdrop-filter: var(--Blur1);
+    height: 90vh;
+    margin: 4vh 4vh 1vh 4vh;
+    display: none;
+}
+
 .histobarre {
     cursor: pointer;
 }
+
+/* Info-bulle */
 
 #info-Bulle{
     display: none;
@@ -432,7 +162,7 @@ a {
 .infoCrop::-webkit-scrollbar {
     width: 5px;
     height: 10px;
-    background-color: #ffffff00; /* or add it to the track */
+    background-color: #ffffff00;
 }
 
   
@@ -457,7 +187,6 @@ a {
     border: var(--Glass);
 }
 
-
 .barAnn {
     height: 20px;
     background: var(--Linear-Violet);
@@ -473,6 +202,69 @@ a {
     cursor: pointer;
 }
 
+/* Page année */
+
+#Annee {
+    display: none;
+    grid-template-columns: 1fr 25vw;
+    grid-template-rows: 50px 1fr 80px;
+    align-content: center;
+    align-items: center;
+    background-color: var(--Fond2);
+    backdrop-filter: var(--Blur1);
+    border: var(--Glass);
+    border-radius: var(--Rad1);
+    height: 90vh;
+    margin: 4vh 4vh 1vh 4vh;
+    grid-template-areas: 
+        "bck asd"
+        "g asd"
+        "bas asd";
+    overflow: hidden;
+}
+
+#backdiv {    
+    grid-area: bck;
+    padding: 20px 0px 0px 20px;
+    text-align: left;
+    height: 100%;
+}
+
+.bck { /* Bouton back */
+    padding: 8px 10px;
+    border-radius: var(--Rad1);
+    border: solid 3px var(--Violet2);
+    background-color: #753FC700;
+    color: var(--Violet2);
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    width: fit-content;
+    height: fit-content;
+    cursor: pointer;
+    box-shadow: 0px 0px 0px 0px var(--Violet2);
+    transition: 0.3s;
+}
+
+.bck:hover {
+    background-color: #753FC7;
+    border: solid 3px var(--Violet1);
+    color: var(--Blanc);
+    box-shadow: 0px 0px 10px 0px var(--Violet2);
+}
+
+#Graph { /* Graph */
+    display: flex;
+    height: 72vh;
+    width: 100%;
+    margin: 0px auto;
+    grid-area: g;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
 .tag {
     font-size: 0.375rem;
     font-family: 'Inter', sans-serif;
@@ -482,6 +274,180 @@ a {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+#NomAn {
+    position: absolute;
+    padding: 15px;
+    background-color: var(--Annee);
+    backdrop-filter: var(--Blur1);
+    border-radius: var(--Rad1);
+    border: var(--Glass);
+    z-index: 105;
+}
+
+#EnBasLa {
+    grid-area: bas;
+    display: grid;
+    height: 100%;
+    justify-content: center;
+    align-items: start;
+    grid-template-columns: 100px 1fr 100px;
+    padding: 0px 20px 20px 20px;
+    grid-template-areas: "L h M";
+}
+
+#EnBasLa > h3 {
+    grid-area: h;
+    margin: auto;
+}
+
+#nbNomi {
+    position: relative;
+    top: 0px;
+}
+
+#nbCate {
+    position: relative;
+    top: 0px;
+}
+
+#More {
+    grid-area: M;
+}
+
+#Less {
+    grid-area: L;
+}
+
+.BtnAn {  /* Bouton année +1 et -1 */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+    border-radius: var(--Rad1);
+    background-color: var(--Noir1);
+    border: var(--Glass);
+    color: var(--Blanc);
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0px 0px 0px 0px var(--Blanc);
+    transition: 0.3s;
+}
+
+.BtnAn:hover {
+    box-shadow: 0px 0px 10px 0px var(--Blanc);
+}
+
+/* Aside Année */
+
+#AsideAn {
+    grid-area: asd;
+    width: 25vw;
+    height: 90vh;
+    background-color: var(--Fond1);
+    border-radius: var(--Rad1);
+    /* border: var(--Glass); */
+    overflow: hidden;
+    margin-left: 2px;
+}
+
+#imgBck {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    z-index: 101;
+}
+
+#Aside {
+    background-color: var(--Fond1);
+    backdrop-filter: var(--Blur2);
+    height: 100%;
+    width: 100%;
+    top: -100%;
+    border-radius: var(--Rad1);
+    position: relative;
+    z-index: 102;
+    overflow: hidden;
+    border: var(--Glass);
+}
+
+#imgAn {
+    display: flex;
+    height: 48vh;
+    width: 100%;
+    background: var(--Linear-Image), var(--Image), url(../asset/OscarLog.svg);
+    background-size: cover;
+    background-position: center;
+    flex-direction: column;
+    align-content: flex-start;
+    justify-content: flex-end;
+    text-align: left;
+    padding: 10px;
+    gap: 10px;
+}
+
+#imgAn > * {
+    margin: 0px;
+}
+
+#tagTop1 {
+    background-color: #798EFE;
+    padding: 8px 12px;
+    width: fit-content;
+    border-radius: var(--Rad1);
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+#BasAside {
+    padding: 10px;
+    text-align: left;
+    height: 42vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.infoAn {
+    overflow-y: scroll;
+}
+
+
+.Divcate {
+    margin: 25px 0px;
+}
+
+.Divcate p {
+    margin: 10px 0px 0px 0px;
+}
+
+.infoAn::-webkit-scrollbar {
+    width: 5px;
+    height: 10px;
+    background-color: #ffffff00;
+}
+
+
+.infoAn::-webkit-scrollbar-thumb {
+    background: var(--Contour);
+}
+
+.TagCate {
+    padding: 8px 12px;
+    width: fit-content;
+    border-radius: var(--Rad1);
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin: 0px;
+}
+
+#BasAside > * {
+    margin: 0px;
+}
+
 
 
 /* Easter Egg */

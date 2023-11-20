@@ -43,6 +43,49 @@ box-sizing: border-box;
     --Rad3: 15px;
 }
 
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--Blanc);
+    background-color: var(--Noir1);
+    text-align: center;
+    margin: 0;
+}
+
+main {
+    position: relative;
+    z-index: 100;
+}
+
+h1 {
+    font-weight: 900;
+    font-size: 4rem;
+    text-transform: uppercase;
+}
+
+h2 {
+    font-weight: 700;
+    font-size: 2rem;
+    text-transform: uppercase;
+}
+
+h3 {
+    font-weight: 700;
+    font-size: 1.5rem;
+    text-transform: capitalize;
+}
+
+a {
+    color: var(--Blanc);
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.violetTxt {
+    color: var(--Violet2);
+}
+
 #good {
     display: none;
 }
