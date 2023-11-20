@@ -6,11 +6,11 @@ Statistiques sur les nominations aux cérémonies des Oscars de 1928 à 2023.
 ------------------------
  Projet réalisé par:
  
-- **Thomas BANSRONT**
+- 🤖**Thomas BANSRONT**
  
-- **Arthur ZACHARY**
+- 👽**Arthur ZACHARY**
  
-- **Robin VIGIER** 
+- 🧙**Robin VIGIER** 
 -----------------------
 
 Constat portant sur l'évolution des nominations aux Oscars depuis 1927 jusqu'à 2023.
